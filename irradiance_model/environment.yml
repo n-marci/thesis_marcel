@@ -1,0 +1,13 @@
+name: env
+channels:
+  - conda-forge
+dependencies:
+  - python = 3.11
+  - toml
+  - matplotlib
+  - numpy
+  - pandas
+  - pint
+  - pint-pandas
+  - pvlib # can be cited
+  - tespy # can be cited

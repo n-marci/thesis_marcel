@@ -1,0 +1,40 @@
+#
+# concrete example values to use in the energy model
+# this uses approximations for a farm on the scale of the eei-tower
+#
+
+[lighting.natural]
+latitude = 49.573              # information on Cauerstraße 7, Erlangen
+longitude = 11.029             # taken from
+altitude = 297                 # https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html#TMY
+timezone = "Europe/Berlin"
+
+orientation = 180              # same convention as azimuth in pvlib
+
+solar-to-par = 2.02            # https://www.researchgate.net/publication/339896036_Conversion_factors_and_general_equations_applied_in_agricultural_and_forest_meteorology
+                               # [[@reis2020]] doi leads to some portuguese website so the link to researchgate is provided
+
+# TODO change sources to my citekey
+
+[lighting.artificial]
+led-watts = 77.76              # LT-5839 300 XT EVO MIXED LM301H 3500K+4000K+660nm+730nm KIT @2.1A
+                               # https://www.led-tech.de/de/system-light
+led-efficiency = 0.622         # radiant power / power
+ppf = 218.28                   # assume here that one led module is mounted per square meter - then ppf is equal to ppfd
+
+[solar]
+installation-angle = 66
+
+# [timeframe]
+# start = '2020-01-01'
+# end = '2020-01-31'
+# step = '1H'
+
+[weather]
+# datafile = './tmy/DEU_BY_Nurnberg.AP.107630_TMYx.2007-2021.epw'     # https://climate.onebuilding.org/WMO_Region_6_Europe/DEU_Germany/index.html
+datafile = './tmy/tmy_49.573_11.029_2005_2020.epw'                    # https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html#TMY
+
+[plant]
+optimal-ppfd = 250             # [[@pennisi2020]] https://doi.org/10.1016/j.scienta.2020.109508
+max-ppfd = 290                 # simplified from [[@chen2022]] https://doi.org/10.1016/j.scienta.2022.111444 - This might be quite low as other studies found higher optimal ppfds
+optimal-dli = 14.4             # [[@pennisi2020]] https://doi.org/10.1016/j.scienta.2020.109508
