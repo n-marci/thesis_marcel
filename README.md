@@ -15,3 +15,9 @@
 - [ ] calculate appropriate solar installation
 - [ ] calculate appropriate energy storage
 - [ ] calculate insulation value of "naked farm" (in winter it will most likely be to energy intensive to operate)
+
+## Overview
+
+- irradiance model is a python script which focuses on the lighting for the plants
+- full model is a openmodelica model where I eventually want to put everything. At the moment it is focused on the thermodynamic examination
+- visualizations contains some useful visualizations which I make to communicate my results
