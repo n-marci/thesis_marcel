@@ -94,7 +94,18 @@ equation
     Line(points = {{-146, -84}, {-132, -84}, {-132, -10}, {-126, -10}}, color = {0, 0, 255}));
   annotation(
     Diagram(graphics = {Text(origin = {-50, -85}, extent = {{-30, 3}, {30, -3}}, textString = "Model for high pressure sodium (HPS) lamps.
-See documentation"), Rectangle(origin = {-140, -20}, lineColor = {119, 118, 123}, lineThickness = 1, extent = {{-60, 120}, {60, -120}}, radius = 1), Rectangle(origin = {-240, -20}, fillColor = {152, 106, 68}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-40, 120}, {40, -120}}, radius = 1), Polygon(origin = {-240, 120}, fillColor = {165, 29, 45}, fillPattern = FillPattern.Solid, lineThickness = 0.5, points = {{-40, -20}, {0, 20}, {40, -20}, {40, -20}, {-40, -20}})}, coordinateSystem(extent = {{-280, 140}, {120, -180}})),
+See documentation"), Rectangle(origin = {-140, -20}, lineColor = {119, 118, 123}, lineThickness = 1, extent = {{-60, 120}, {60, -120}}, radius = 1), Rectangle(origin = {-240, -20}, fillColor = {152, 106, 68}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-40, 120}, {40, -120}}, radius = 1), Polygon(origin = {-240, 120}, fillColor = {165, 29, 45}, fillPattern = FillPattern.Solid, lineThickness = 0.5, points = {{-40, -20}, {0, 20}, {40, -20}, {40, -20}, {-40, -20}}), Text(origin = {-350, 20}, extent = {{-50, 80}, {50, -80}}, textString = "DOING
+- define system
+\t- list state variables
+\t- list flux variables
+\t- order the variables into functional subsystems
+
+TODO
+- make model of eei-tower
+\t- get geodata of the location
+\t- get building data
+
+DONE", horizontalAlignment = TextAlignment.Left)}, coordinateSystem(extent = {{-400, 140}, {100, -180}})),
   version = "",
   uses,
   experiment(StartTime = 0, StopTime = 29804400, Tolerance = 1e-6, Interval = 3599.57));end verticalfarm;
