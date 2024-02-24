@@ -97,7 +97,8 @@ equation
 See documentation"), Rectangle(origin = {-140, -20}, lineColor = {119, 118, 123}, lineThickness = 1, extent = {{-60, 120}, {60, -120}}, radius = 1), Rectangle(origin = {-240, -20}, fillColor = {152, 106, 68}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-40, 120}, {40, -120}}, radius = 1), Polygon(origin = {-240, 120}, fillColor = {165, 29, 45}, fillPattern = FillPattern.Solid, lineThickness = 0.5, points = {{-40, -20}, {0, 20}, {40, -20}, {40, -20}, {-40, -20}}), Text(origin = {-350, 20}, extent = {{-50, 80}, {50, -80}}, textString = "DOING
 - define system
 \t- list state variables
-\t- list flux variables
+\t- list flow variables
+\t- list input variables
 \t- order the variables into functional subsystems
 
 TODO
@@ -106,6 +107,6 @@ TODO
 \t- get building data
 
 DONE", horizontalAlignment = TextAlignment.Left)}, coordinateSystem(extent = {{-400, 140}, {100, -180}})),
-  version = "",
-  uses,
-  experiment(StartTime = 0, StopTime = 29804400, Tolerance = 1e-6, Interval = 3599.57));end verticalfarm;
+    version = "",
+    uses,
+    experiment(StartTime = 0, StopTime = 29804400, Tolerance = 1e-6, Interval = 3599.57));end verticalfarm;

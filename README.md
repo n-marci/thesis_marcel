@@ -11,7 +11,11 @@
   - [ ] 3d gas simulation using openfoam (finite volume method) or dualsphysics (smoothed particle hydrodynamics) in unity/blender/freecad
   - [ ] combine simulations with fmu and co-simulation
 - [ ] estimate energy consumption of remaining components (irrigation, sensors, mechanical actors)
-- [ ] develop functional architecture
+- [ ] DOING develop system architecture
+  - [x] use case analysis
+  - [ ] design functional architecture
+  - [ ] assign modules to functions
+- [ ] DOING build 3d model to convey idea better
 - [ ] calculate appropriate solar installation
 - [ ] calculate appropriate energy storage
 - [ ] calculate insulation value of "naked farm" (in winter it will most likely be to energy intensive to operate)
