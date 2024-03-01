@@ -2,3 +2,5 @@ secrets
 .helix
 .mamba
 full_model/verticalfarm/*
+3d_model/*
+!3d_model/README.md
