@@ -1,0 +1,105 @@
+%created by Laurenz Taffner
+
+\documentclass[
+paper=A4,               % paper format
+pagesize=auto,          % provide page size for compiler
+fontsize=12pt,          % font size
+DIV=16,                 % type area calculation
+twoside=true,           % two-sided layout for printing
+BCOR=20mm,              % binding correction for printing (ask at copy shop!)
+parskip=false,          % space between paragraphs
+chapterprefix=true,     % prefix before chapter names: Chapter #
+appendixprefix=true,    % prefix before appendix names: Appendix #
+listof=totoc,           % include lists of figures and tables in TOC
+bibliography=totoc,     % include bibliography in TOC
+headinclude=true,       % header included in type area
+footinclude=false,      % footer included in type area
+headsepline=true,       % separation line between header and text
+footsepline=false,      % separation line between footer and text
+headings=small,         % size of headings
+numbers=noenddot        % no dot after chapter heading prefixes
+] {scrbook}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} % can be used for writing the thesis in German
+\usepackage[onehalfspacing]{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage[caption=false]{subfig}
+\usepackage{booktabs}
+\usepackage[printonlyused]{acronym}
+\usepackage{pdfpages}
+\usepackage{cite}
+
+\usepackage[center]{caption}
+\usepackage{scalerel}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{realboxes}
+%\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{adjustbox}
+%\usetikzlibrary{datavisualization}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+\definecolor{codecolor}{rgb}{0.86, 0.86, 0.86}
+\lstset{
+  basicstyle=\fontsize{11}{13}\selectfont\ttfamily,
+  backgroundcolor= \color{codecolor},
+  xleftmargin=3mm,
+  xrightmargin=3mm
+}
+
+
+\recalctypearea
+\captionsetup{labelfont=bf}
+\captionsetup{font=small}
+
+%------------------------- THESIS ---------------------------
+
+\begin{document}
+
+    \pagenumbering{Alph} % will not be displayed
+    \input{texfiles/Beginning_0_Titlepage}
+
+    %\cleardoublepage
+    %\includepdf[pages={1},scale={0.95}]{topic/Thema_Taffner}
+    %\cleardoublepage
+    
+    %\input{texfiles/Beginning_1_Erklaerung}
+    % or
+    \input{texfiles/Beginning_1_Declaration}
+
+    \frontmatter\frontmatter
+	\pagenumbering{Roman}
+    \input{texfiles/Beginning_3_Kurzfassung}
+    \input{texfiles/Beginning_2_Abstract} 
+    %\input{texfiles/Beginning_4_Symbols}
+	\input{texfiles/Beginning_5_Acronyms}
+    
+    \tableofcontents
+
+    \mainmatter
+	\input{texfiles/Chap_0_Introduction}
+	%\input{texfiles/Chap_1_LPWAN}
+	%... all other chapters
+	
+	%\input{texfiles/End_CV}
+
+	%\appendix
+	%\input{texfiles/End_Appendix_1}
+	
+    \backmatter
+    \listoffigures
+    \listoftables
+    \scriptsize{
+    \bibliography{bibfiles/MA_references}
+    }
+ 	\bibliographystyle{IEEEtran}
+
+\end{document}
