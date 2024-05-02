@@ -2,7 +2,7 @@ secrets
 .helix
 .mamba
 full_model/verticalfarm/*
-full_model/.ipynb_checkpoints/*
+.ipynb_checkpoints
 
 3d_model/*
 !3d_model/README.md
