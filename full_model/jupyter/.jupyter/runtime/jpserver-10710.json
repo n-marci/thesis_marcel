@@ -1,0 +1,13 @@
+{
+  "base_url": "/",
+  "hostname": "localhost",
+  "password": false,
+  "pid": 10710,
+  "port": 8888,
+  "root_dir": "/home/marci/dev/ma/full_model/jupyter",
+  "secure": false,
+  "sock": "",
+  "token": "85f2bc7bdec0829391917cb1492c24856e6762ef2b762a39",
+  "url": "http://localhost:8888/",
+  "version": "2.4.0"
+}
