@@ -3,6 +3,7 @@ secrets
 .mamba
 full_model/verticalfarm/*
 .ipynb_checkpoints
+.jupyter
 
 3d_model/*
 !3d_model/README.md
