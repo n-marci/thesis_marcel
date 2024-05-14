@@ -1,43 +1,35 @@
 {
-  description = "Your jupyenv project";
+  description = "micromamba development flake";
 
-  nixConfig.extra-substituters = [
-    "https://tweag-jupyter.cachix.org"
-  ];
-  nixConfig.extra-trusted-public-keys = [
-    "tweag-jupyter.cachix.org-1:UtNH4Zs6hVUFpFBTLaA4ejYavPo5EFFqgd7G7FxGW9g="
-  ];
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
 
-  inputs.flake-compat.url = "github:edolstra/flake-compat";
-  inputs.flake-compat.flake = false;
-  inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-  inputs.jupyenv.url = "github:tweag/jupyenv";
+  outputs = { self, nixpkgs }:
+    let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      path = "/home/marci/dev/jptest3";
+    in {
+      devShell.x86_64-linux = (pkgs.buildFHSUserEnv {
+        name = "conda";
+        targetPkgs = pkgs: (
+          with pkgs; [
+            micromamba
+            jupyter-all
+            # gcc
+          ]
+        );
+        profile = ''
+          eval "$(micromamba shell hook -s bash)"
+          export MAMBA_ROOT_PREFIX=${path}/.mamba
 
-  outputs = {
-    self,
-    flake-compat,
-    flake-utils,
-    nixpkgs,
-    jupyenv,
-    ...
-  } @ inputs:
-    flake-utils.lib.eachSystem
-    [
-      flake-utils.lib.system.x86_64-linux
-    ]
-    (
-      system: let
-        inherit (jupyenv.lib.${system}) mkJupyterlabNew;
-        jupyterlab = mkJupyterlabNew ({...}: {
-          nixpkgs = inputs.nixpkgs;
-          imports = [(import ./kernels.nix)];
-        });
-      in rec {
-        packages = {inherit jupyterlab;};
-        packages.default = jupyterlab;
-        apps.default.program = "${jupyterlab}/bin/jupyter-lab";
-        apps.default.type = "app";
-      }
-    );
+          micromamba create -n calcs jupyter --file requirements.txt -c conda-forge
+          micromamba install --yes -f requirements.txt
+
+          micromamba activate calcs
+          # micromamba update --yes -f environment.yml
+          # jupyter notebook
+        '';
+      }).env;
+    };
 }
