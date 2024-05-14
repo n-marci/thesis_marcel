@@ -8,7 +8,7 @@
   outputs = { self, nixpkgs }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      path = "/home/marci/dev/jptest3";
+      path = "/home/marci/dev/ma/full_model/jupyter";
     in {
       devShell.x86_64-linux = (pkgs.buildFHSUserEnv {
         name = "conda";
