@@ -41,7 +41,7 @@ High resource use of cities.
 Uncertainty of future climate.
 This section laid out a number of different problems. This work can not adress all, but tries to connect 
 
-\subsection{State of the Art}
+% \subsection{State of the Art}
 Let us first examine current \ac{cea} and vertical farming approaches to get a better understanding of the solution methods and shortcomings.
 Current solutions try to achieve high degree of automation and full control over the environment.
 This results in high energy
@@ -49,6 +49,39 @@ This results in high energy
 
 
 \section{Solution Proposal}
-\subsection{Goals and Contributions}
+% \subsection{Goals and Contributions}
 First we shall look
 - Gliederung der Arbeit
+
+ \begin{tikzpicture}                                                                                                 
+ \draw[->] (0,0) -- (4,0) node[right] {East};                                                                        
+ \draw[->] (0,0) -- (0,4) node[above] {North};                                                                       
+ \draw (2,0) -- (2,3) node[midway, right] {GHI};                                                                     
+ \end{tikzpicture}       
+
+                                                                                                                     
+ \begin{tikzpicture}                                                                                                 
+ \draw[->] (0,0) -- (4,0) node[right] {East};                                                                        
+ \draw[->] (0,0) -- (0,4) node[above] {North};                                                                       
+ \draw (2,0) -- (2,3) node[midway, right] {DNI};                                                                     
+ \draw[->, red] (2,3) -- (2,0);                                                                                      
+ \end{tikzpicture}  
+
+ \begin{tikzpicture}                                                                                                 
+ \draw[->] (0,0) -- (4,0) node[right] {East};                                                                        
+ \draw[->] (0,0) -- (0,4) node[above] {North};                                                                       
+ \draw (2,0) -- (2,3) node[midway, right] {DHI};                                                                     
+ \draw[->, blue] (2,3) -- (1,0);                                                                                     
+ \draw[->, blue] (2,3) -- (3,0);                                                                                     
+ \end{tikzpicture}                                                                                                   
+
+                                                                                                                      
+ \begin{tikzpicture}                                                                                                 
+ \draw[->] (0,0) -- (4,0) node[right] {East};                                                                        
+ \draw[->] (0,0) -- (0,4) node[above] {North};                                                                       
+ \draw (2,0) -- (2,3) node[midway, right] {POA};                                                                     
+ \draw[->, red] (2,3) -- (2,0);                                                                                      
+ \draw[->, blue] (2,3) -- (1,0);                                                                                     
+ \draw[->, blue] (2,3) -- (3,0);                                                                                     
+ \draw[->, green] (2,0) -- (2,1);                                                                                    
+ \end{tikzpicture}      

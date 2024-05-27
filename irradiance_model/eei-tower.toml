@@ -32,7 +32,8 @@ installation-angle = 66
 
 [weather]
 # datafile = './tmy/DEU_BY_Nurnberg.AP.107630_TMYx.2007-2021.epw'     # https://climate.onebuilding.org/WMO_Region_6_Europe/DEU_Germany/index.html
-datafile = './tmy/tmy_49.573_11.029_2005_2020.epw'                    # https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html#TMY
+datafile = './tmy/DEU_BY_Nurnberg.AP.107630_TMYx.epw'     # https://climate.onebuilding.org/WMO_Region_6_Europe/DEU_Germany/index.html
+# datafile = './tmy/tmy_49.573_11.029_2005_2020.epw'                    # https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html#TMY
 
 [plant]
 optimal-ppfd = 250             # [[@pennisi2020]] https://doi.org/10.1016/j.scienta.2020.109508
