@@ -25,13 +25,13 @@ model airvolume
   Modelica.Blocks.Sources.Constant windspeed_and_direction_building(k = 0) annotation(
     Placement(transformation(origin = {40, -2}, extent = {{-10, -10}, {10, 10}})));
   parameter Buildings.HeatTransfer.Data.Solids.Concrete concrete(x = 0.18, k = 2, c = 550, d = 3500) annotation(
-    Placement(transformation(origin = {50, -104}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {156, -76}, extent = {{-10, -10}, {10, 10}})));
   parameter Buildings.HeatTransfer.Data.Solids.InsulationBoard eps(x = 0.05, k = 0.035, c = 1200, d = 21) annotation(
-    Placement(transformation(origin = {90, -104}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {196, -76}, extent = {{-10, -10}, {10, 10}})));
   parameter Buildings.HeatTransfer.Data.Solids.Glass glass(x(displayUnit = "mm") = 0.025) annotation(
     Placement(transformation(origin = {70, 42}, extent = {{-10, -10}, {10, 10}})));
   parameter Buildings.HeatTransfer.Data.OpaqueConstructions.Generic facade_material(nLay = 2, material = {concrete, eps}) annotation(
-    Placement(transformation(origin = {70, -76}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {176, -48}, extent = {{-10, -10}, {10, 10}})));
   Buildings.HeatTransfer.Conduction.MultiLayer building_facade_conduction(A = 523.2, layers = facade_material) annotation(
     Placement(transformation(origin = {70, -50}, extent = {{10, -10}, {-10, 10}}, rotation = -0)));
   Modelica.Blocks.Math.Gain gaiWin(k = 1236.9*0.03) annotation(
@@ -40,8 +40,6 @@ model airvolume
     Placement(transformation(origin = {-70, 80}, extent = {{-10, -10}, {10, 10}})));
   Buildings.HeatTransfer.Sources.PrescribedTemperature preTem1 annotation(
     Placement(transformation(origin = {-196, -34}, extent = {{-10, -10}, {10, 10}})));
-  Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam = "/home/marci/dev/ma/irradiance_model/tmy/DEU_BY_Nurnberg.AP.107630_TMYx.mos") annotation(
-    Placement(transformation(origin = {-320, -30}, extent = {{-10, -10}, {10, 10}})));
   Buildings.BoundaryConditions.WeatherData.Bus weaBus annotation(
     Placement(transformation(origin = {-268, -30}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-274, -32}, extent = {{-10, -10}, {10, 10}})));
 
@@ -60,41 +58,57 @@ model airvolume
 end testing;
 
     Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(filNam = "/home/marci/dev/ma/irradiance_model/tmy/DEU_BY_Nurnberg.AP.107630_TMYx.mos") annotation(
-      Placement(transformation(origin = {-260, -118}, extent = {{-60, 20}, {-40, 40}})));
+      Placement(transformation(origin = {-520, -104}, extent = {{-60, 20}, {-40, 40}})));
   Buildings.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirRoo(azi = Buildings.Types.Azimuth.S, til (displayUnit = "rad")= 90) annotation(
-      Placement(transformation(origin = {-260, -118}, extent = {{20, 20}, {40, 40}})));
+      Placement(transformation(origin = {-520, -104}, extent = {{20, 20}, {40, 40}})));
   Buildings.BoundaryConditions.SolarIrradiation.DiffuseIsotropic HDifTilIso(til = 1.5707963267948966)  annotation(
-      Placement(transformation(origin = {-230, -108}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-490, -94}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add annotation(
-      Placement(transformation(origin = {-190, -98}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-450, -84}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Gain solar_to_par(k = 2.02/1000000)  annotation(
-      Placement(transformation(origin = {-152, -98}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-412, -84}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Continuous.Integrator integrator(use_reset = true)  annotation(
-      Placement(transformation(origin = {-72, -98}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-332, -84}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interaction.Show.RealValue realValue annotation(
-      Placement(transformation(origin = {-38, -70}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Discrete.Sampler sampler(samplePeriod = 3600)  annotation(
-      Placement(transformation(origin = {-118, -98}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.SampleTrigger sampleTrigger(period = 86400)  annotation(
-      Placement(transformation(origin = {-90, -130}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-294, -56}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.SampleTrigger daily_trigger(period = 86400)  annotation(
+      Placement(transformation(origin = {-350, -116}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Mean mean(f(displayUnit = "nHz") = 3.73e-7, yGreaterOrEqualZero = true)  annotation(
-      Placement(transformation(origin = {20, -98}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-240, -84}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Constant optimal_dli(k = 14.4)  annotation(
-      Placement(transformation(origin = {-16, -156}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-276, -142}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add missing_dli(k1 = -1)  annotation(
-      Placement(transformation(origin = {20, -130}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-240, -116}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Discrete.Sampler sampler1(samplePeriod = 86400, startTime = 72000)  annotation(
-      Placement(transformation(origin = {-14, -98}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-274, -84}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Constant hourly_light_integral(k = 218.28*60*60/1000000)  annotation(
-      Placement(transformation(origin = {20, -166}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-240, -152}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Division hours_of_suppl_lighting annotation(
-      Placement(transformation(origin = {70, -150}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-190, -136}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Constant led_watts(k = 77.76)  annotation(
-      Placement(transformation(origin = {70, -186}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-158, -180}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Product led_power_draw annotation(
-      Placement(transformation(origin = {120, -170}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-108, -156}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Constant led_efficiency(k = 0.622)  annotation(
-      Placement(transformation(origin = {120, -204}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-138, -228}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.Constant full_efficiency(k = 1)  annotation(
+      Placement(transformation(origin = {-138, -264}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Math.Add led_heat_loss(k1 = -1)  annotation(
+      Placement(transformation(origin = {-94, -242}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Math.Product led_heat_generation annotation(
+      Placement(transformation(origin = {-54, -162}, extent = {{-10, -10}, {10, 10}})));
+  Buildings.HeatTransfer.Sources.PrescribedHeatFlow led_prescriped_heat_flow annotation(
+      Placement(transformation(origin = {-22, -162}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Nonlinear.Limiter limiter(uMin = 0, uMax = Modelica.Constants.inf)  annotation(
+      Placement(transformation(origin = {-152, -140}, extent = {{-10, -10}, {10, 10}})));
+  Buildings.BoundaryConditions.SolarGeometry.IncidenceAngle incAng(azi = 0, til = 1.5707963267948966)  annotation(
+      Placement(transformation(origin = {-490, -122}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Continuous.Integrator led_cumulative_power_draw annotation(
+      Placement(transformation(origin = {-60, -110}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Math.Sum sum1 annotation(
+      Placement(transformation(origin = {-448, -126}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Math.MultiSum multiSum annotation(
+      Placement(transformation(origin = {-572, -134}, extent = {{-10, -10}, {10, 10}})));
   equation
     connect(envelope_glass_outside_convection.solid, envelope_glass_conduction.port_a) annotation(
       Line(points = {{-110, -10}, {-100, -10}}, color = {191, 0, 0}));
@@ -136,8 +150,6 @@ end testing;
       Line(points = {{-60, 80}, {-10, 80}, {-10, -20}}, color = {191, 0, 0}));
     connect(preTem1.port, envelope_glass_outside_convection.fluid) annotation(
       Line(points = {{-186, -34}, {-160, -34}, {-160, -10}, {-130, -10}}, color = {191, 0, 0}));
-    connect(weaDat.weaBus, weaBus) annotation(
-      Line(points = {{-310, -30}, {-268, -30}}, color = {255, 204, 51}, thickness = 0.5));
     connect(weaBus.TDryBul, preTem1.T) annotation(
       Line(points = {{-268, -30}, {-232, -30}, {-232, -34}, {-208, -34}}, color = {0, 0, 127}));
     connect(gaiWin.u, weaBus.HDirNor);
@@ -148,43 +160,59 @@ end testing;
     connect(envelope_glass_outside_convection.dir, weaBus.winDir) annotation(
       Line(points = {{-108, -4}, {-100, -4}, {-100, 16}, {-268, 16}, {-268, -30}}, color = {0, 0, 127}));
     connect(weaDat1.weaBus, HDirRoo.weaBus) annotation(
-      Line(points = {{-300, -88}, {-240, -88}}, color = {255, 204, 51}, thickness = 0.5));
+      Line(points = {{-560, -74}, {-500, -74}}, color = {255, 204, 51}, thickness = 0.5));
     connect(HDifTilIso.weaBus, weaDat1.weaBus) annotation(
-      Line(points = {{-240, -108}, {-270, -108}, {-270, -88}, {-300, -88}}, color = {255, 204, 51}, thickness = 0.5));
+      Line(points = {{-500, -94}, {-530, -94}, {-530, -74}, {-560, -74}}, color = {255, 204, 51}, thickness = 0.5));
     connect(HDirRoo.H, add.u1) annotation(
-      Line(points = {{-218, -88}, {-211, -88}, {-211, -92}, {-202, -92}}, color = {0, 0, 127}));
+      Line(points = {{-479, -74}, {-472, -74}, {-472, -78}, {-463, -78}}, color = {0, 0, 127}));
     connect(HDifTilIso.H, add.u2) annotation(
-      Line(points = {{-218, -108}, {-214, -108}, {-214, -104}, {-202, -104}}, color = {0, 0, 127}));
+      Line(points = {{-479, -94}, {-475, -94}, {-475, -90}, {-463, -90}}, color = {0, 0, 127}));
     connect(add.y, solar_to_par.u) annotation(
-      Line(points = {{-178, -98}, {-164, -98}}, color = {0, 0, 127}));
-    connect(solar_to_par.y, sampler.u) annotation(
-      Line(points = {{-140, -98}, {-130, -98}}, color = {0, 0, 127}));
-    connect(sampler.y, integrator.u) annotation(
-      Line(points = {{-106, -98}, {-84, -98}}, color = {0, 0, 127}));
+      Line(points = {{-439, -84}, {-425, -84}}, color = {0, 0, 127}));
     connect(integrator.y, realValue.numberPort) annotation(
-      Line(points = {{-60, -98}, {-58, -98}, {-58, -70}, {-50, -70}}, color = {0, 0, 127}));
-  connect(sampleTrigger.y, integrator.reset) annotation(
-      Line(points = {{-78, -130}, {-66, -130}, {-66, -110}}, color = {255, 0, 255}));
-  connect(optimal_dli.y, missing_dli.u2) annotation(
-      Line(points = {{-5, -156}, {-1, -156}, {-1, -136}, {7, -136}}, color = {0, 0, 127}));
-  connect(sampler1.u, integrator.y) annotation(
-      Line(points = {{-26, -98}, {-60, -98}}, color = {0, 0, 127}));
-  connect(sampler1.y, mean.u) annotation(
-      Line(points = {{-2, -98}, {8, -98}}, color = {0, 0, 127}));
-  connect(sampler1.y, missing_dli.u1) annotation(
-      Line(points = {{-2, -98}, {0, -98}, {0, -124}, {8, -124}}, color = {0, 0, 127}));
-  connect(missing_dli.y, hours_of_suppl_lighting.u1) annotation(
-      Line(points = {{32, -130}, {44, -130}, {44, -144}, {58, -144}}, color = {0, 0, 127}));
-  connect(hourly_light_integral.y, hours_of_suppl_lighting.u2) annotation(
-      Line(points = {{31, -166}, {52.5, -166}, {52.5, -156}, {58, -156}}, color = {0, 0, 127}));
-  connect(hours_of_suppl_lighting.y, led_power_draw.u1) annotation(
-      Line(points = {{82, -150}, {92, -150}, {92, -164}, {108, -164}}, color = {0, 0, 127}));
-  connect(led_watts.y, led_power_draw.u2) annotation(
-      Line(points = {{82, -186}, {88, -186}, {88, -176}, {108, -176}}, color = {0, 0, 127}));
+      Line(points = {{-321, -84}, {-314.25, -84}, {-314.25, -56}, {-305.5, -56}}, color = {0, 0, 127}));
+    connect(daily_trigger.y, integrator.reset) annotation(
+      Line(points = {{-339, -116}, {-327, -116}, {-327, -96}}, color = {255, 0, 255}));
+    connect(optimal_dli.y, missing_dli.u2) annotation(
+      Line(points = {{-265, -142}, {-261, -142}, {-261, -122}, {-253, -122}}, color = {0, 0, 127}));
+    connect(sampler1.u, integrator.y) annotation(
+      Line(points = {{-286, -84}, {-320, -84}}, color = {0, 0, 127}));
+    connect(sampler1.y, mean.u) annotation(
+      Line(points = {{-263, -84}, {-253, -84}}, color = {0, 0, 127}));
+    connect(sampler1.y, missing_dli.u1) annotation(
+      Line(points = {{-263, -84}, {-261, -84}, {-261, -110}, {-253, -110}}, color = {0, 0, 127}));
+    connect(missing_dli.y, hours_of_suppl_lighting.u1) annotation(
+      Line(points = {{-229, -116}, {-217, -116}, {-217, -130}, {-203, -130}}, color = {0, 0, 127}));
+    connect(hourly_light_integral.y, hours_of_suppl_lighting.u2) annotation(
+      Line(points = {{-229, -152}, {-207.5, -152}, {-207.5, -142}, {-202, -142}}, color = {0, 0, 127}));
+    connect(led_watts.y, led_power_draw.u2) annotation(
+      Line(points = {{-147, -180}, {-141, -180}, {-141, -162}, {-121, -162}}, color = {0, 0, 127}));
+    connect(full_efficiency.y, led_heat_loss.u2) annotation(
+      Line(points = {{-127, -264}, {-121, -264}, {-121, -248}, {-107, -248}}, color = {0, 0, 127}));
+    connect(led_efficiency.y, led_heat_loss.u1) annotation(
+      Line(points = {{-127, -228}, {-121, -228}, {-121, -236}, {-107, -236}}, color = {0, 0, 127}));
+    connect(led_heat_loss.y, led_heat_generation.u2) annotation(
+      Line(points = {{-83, -242}, {-76, -242}, {-76, -168}, {-67, -168}}, color = {0, 0, 127}));
+    connect(led_power_draw.y, led_heat_generation.u1) annotation(
+      Line(points = {{-97, -156}, {-67, -156}}, color = {0, 0, 127}));
+    connect(led_heat_generation.y, led_prescriped_heat_flow.Q_flow) annotation(
+      Line(points = {{-42, -162}, {-32, -162}}, color = {0, 0, 127}));
+    connect(led_prescriped_heat_flow.port, farm_air.heatPort) annotation(
+      Line(points = {{-12, -162}, {-2, -162}, {-2, -66}, {-34, -66}, {-34, -10}, {-10, -10}, {-10, -20}}, color = {191, 0, 0}));
+    connect(hours_of_suppl_lighting.y, limiter.u) annotation(
+      Line(points = {{-178, -136}, {-174, -136}, {-174, -140}, {-164, -140}}, color = {0, 0, 127}));
+    connect(limiter.y, led_power_draw.u1) annotation(
+      Line(points = {{-140, -140}, {-134, -140}, {-134, -150}, {-120, -150}}, color = {0, 0, 127}));
+    connect(weaDat1.weaBus, weaBus) annotation(
+      Line(points = {{-560, -74}, {-530, -74}, {-530, -30}, {-268, -30}}, color = {255, 204, 51}, thickness = 0.5));
+    connect(weaDat1.weaBus, incAng.weaBus) annotation(
+      Line(points = {{-560, -74}, {-530, -74}, {-530, -122}, {-500, -122}}, color = {255, 204, 51}, thickness = 0.5));
+    connect(led_power_draw.y, led_cumulative_power_draw.u) annotation(
+      Line(points = {{-96, -156}, {-84, -156}, {-84, -110}, {-72, -110}}, color = {0, 0, 127}));
+  connect(solar_to_par.y, integrator.u) annotation(
+      Line(points = {{-400, -84}, {-344, -84}}, color = {0, 0, 127}));
     annotation(
-    Diagram(coordinateSystem(extent = {{-340, 100}, {180, -120}}), graphics = {Rectangle(origin = {70, -77}, extent = {{-44, 47}, {44, -47}}), Rectangle(origin = {71, 58}, extent = {{-45, 32}, {45, -32}}), Rectangle(origin = {-90, 37}, extent = {{-46, 63}, {46, -63}}), Text(origin = {50, -118}, extent = {{-18, 2}, {18, -2}}, textString = "https://doi.org/10.4028/www.scientific.net/SSP.321.113"), Text(origin = {92, -118}, extent = {{-18, 2}, {18, -2}}, textString = "https://doi.org/10.1088/1742-6596%2F2069%2F1%2F012090")}));
-  annotation(
-    Diagram(coordinateSystem(extent = {{-340, 100}, {180, -120}})));
+      Diagram(coordinateSystem(extent = {{-580, 100}, {220, -280}})));
 end airvolume;
 
   model testing3
@@ -231,6 +259,22 @@ end testing3;
     connect(weaDat.weaBus, HDirRoo.weaBus) annotation(
       Line(points = {{-40, 30}, {20, 30}}, color = {255, 204, 51}, thickness = 0.5));
   end testing4;
+
+  model led "model for the power consumption and heat generation of an led module"
+  //  parameter Modelica.Units.SI.Angle azi "Surface azimuth";
+  //  parameter Modelica.Units.SI.Angle til "Surface tilt";
+  //  Real HDirNor(final unit="W/m2") "Direct normal solar irradiation";
+    parameter Modelica.Units.SI.Power power "led power draw";
+    parameter Real efficiency=0.622 "efficiency of the led";
+    
+    Real heat_loss "the heat loss of the led";
+    Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port annotation (Placement(transformation(extent={{90,
+          -10},{110,10}})));
+    
+  equation
+    heat_loss = (1 - efficiency) * power;
+    port.Q_flow = heat_loss;
+  end led;
   annotation(
     uses(Buildings(version = "11.0.0"), Modelica(version = "4.0.0")));
 end vertical_farm;

@@ -51,7 +51,8 @@ def instantiate():
     par = poa['poa_global'] * inputs['lighting']['natural']['solar-to-par']       # photosynthetic active radiation (par)
     hppfd = par.map(lambda x: min(x, inputs['plant']['max-ppfd'])) * 60 * 60 / 1000000    # hourly ppfd - photosynthetic photon flux density (ppfd)
     dli = hppfd.resample('D').sum()                         # daily light integral (dli)
-    dli.resample('M').mean().plot(ax=ax[0])
+    # dli.resample('M').mean().plot(ax=ax[0])
+    dli.plot(ax=ax[0])
 
     # draw figure
     ax[0].set_title("Monthly mean of daily light integral by natural irradiance")
