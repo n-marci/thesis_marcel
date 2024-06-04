@@ -286,7 +286,7 @@ package vertical_farm
   connect(xor.y, timer.u) annotation(
       Line(points = {{-138, -90}, {-116, -90}}, color = {255, 0, 255}));
     annotation(
-      Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}})),
+      Diagram(coordinateSystem(extent = {{-420, 60}, {120, -120}})),
   Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}})));
 end led;
   annotation(
