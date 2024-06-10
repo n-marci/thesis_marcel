@@ -2,8 +2,34 @@
 \chapter{Fundamentals}
 \label{chap:fundamentals}
 
-\section{Thermodynamics}
-\subsection{Heat Transfer}
+\section{Heat Transfer}
+\subsection{Types of Heat}
+Heat can be classified into two different forms.
+There is sensible heat which directly causes a temperature change in a material.
+And there is latent heat which is responsible for the phase change of a material.
+During the phase change, there is no temperature change from heat added into or substracted from the system.
+Total heat transfered during a process is denoted by $Q$ and the rate at which this happens is signified with $\dot{Q}$ carrying the unit Watt.
+This heat transfer rate $\dot{Q}$ is what we will look at next.
+
+\subsection{Types of Heat Transfer}
+@cengel2003
+Heat transfer can fundamentally occur in three different forms.
+Conduction, Convection and Radiation.
+
+\textit{Conduction} refers to heat moving through a material.
+It is characterised by the heat conductivity $k$ specific to the substance in question and can be modeled by Fourier's law
+$$
+\dot{Q}_{cond} = -k \frac{A}{L} \Delta T
+$$,
+where $A$ is the area through which the conduction takes place, $L$ is the distance and $\Delta T$ is the temperature difference.
+\textit{Convection} is heat transfered on the boundary between a solid and a fluid.
+The characteristic value for this interaction is the convection heat transfer coefficient $h$ while the mathematical description is given by Newton's law of cooling
+$$
+\dot{Q}_{conv} = h A \Delta T
+$$,
+with $A$ being again the area, and $\Delta T$ the temperature difference.
+\textit{Radiation} 
+
 To be able to understand the implementation of the simulation discussed later in \textcolor{blue}{needs ref}, we first need to introduce the basics of heat transfer. 
 There are three different forms in which heat transfer can occur.
 First Conduction, which describes heat moving through a solid material. This property can be characterised by the heat conductivity $k$ for the specific material.
@@ -24,5 +50,43 @@ Explain Heat Capacity.
 
 
 \section{Systems Modelling Approach}
+
 \section{Agricultural and CEA Basics}
-%
+In the center of \ac{cea} stands the plant.
+The environment is crafted to provide optimal conditions.
+
+\subsection{Irradiance}
+\subsubsection{Irradiance on a tilted surface}
+
+\subsubsection{Solar spectrum and photosynthesis}
+When assessing the optimal lighting conditions for plant growth, several factors need to be illuminated.
+Pun intended.
+Light spectrum, Instantenous light intensity, Cumulative light amount and Photoperiod
+
+For quantifying \textit{spectrum} and \textit{instantenous intensity} we will introduce \ac{par} and \ac{ppfd}.
+As discussed before we want to 
+How do we quantify the solar irradiance 
+Plants use solar radiation in the spectrum from 400 nm to 700 nm \textcolor{blue}{needs ref} for photosynthesis.
+This is only a portion of the actual solar radiation which is hitting earth.
+For the \textit{natural} solar radiation in the context of plant growth, the concept of \ac{par} is most often used.
+This describes the solar radiation which lies inside the aforementioned range for photosynthesis and can be calculated with a simple conversion factor @reis2020.
+% To convert the irradiance on a tilted surface we calculated before to the \ac{par}, there exists a simple conversion factor @reis2020.
+Meanwhile when using \textit{artificial} lighting, \ac{ppfd} is used to describe the relevant radiation.
+\ac{par} and \ac{ppfd} quantify \textit{light spectrum} and \textit{instantenous intensity}.
+They both carry the same unit and except for their natural or artificial origin, can be treated the same.
+
+To quantify the \textit{cumulative light amount} and \textit{photoperiod} for a whole day, we simply accumulate \ac{par} and \ac{ppfd} over one day.
+This is called \ac{dli}.
+
+LEDs are chosen because of their high efficiency and possibility to adjust the light spectrum granuarly.
+
+\subsection{Irrigation}
+Soilless Agriculture - Hydroponics - Aeroponics
+
+Aeroponics and specially fogponic system is chosen because of the lightweight nature and ease of deployment.
+
+\subsection{Atmosphere}
+Vapor pressure - VPD
+CO2 concentrations
+
+

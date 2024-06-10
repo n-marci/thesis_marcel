@@ -20,6 +20,34 @@ Lorem ipsum ...
 
 \section{Motivation}
 \label{sec:Motivation}
+In the last two centuries human civilization has seen tremendous growth, a rise in global interconnectedness and urbanization.
+These trends are posed to continue at a rapid rate and provide mankind with prosperity never imaginable to our ancestors.
+Unfortunately as everything in life these developments also come with significant drawbacks we as a society need to address.
+
+One, interconnectedness comes at the cost of reliance.
+The division of labor on a global scale has produced the curious situation where some nations are not able to provide food for their own people. \textcolor{blue}{needs ref.}
+An arrangement which previously has taken down not only nations but entire civilizations.
+Something as basic as food supply should be the upmost priority for a government serving its people.
+However now, agricultural highly productive nations such as Ukraine are exporting much of their produce, providing a stable food supply to the world.
+But with this we can see multiple problems.
+On the one hand climate conditions and regions may shift significantly in the future which would result in previously very productive areas becoming less fertile.
+On the other hand in a global economy every nation is its own actor.
+Recent history has revealed that overdependence on an entity you have no control over or which safety you can not control, can lead to catastrophic consequences.
+But not only autocracies with their agenda pose a risk to this configuration.
+
+Second, higher prosperity has led to higher resource usage and an exploitation of our environment.
+Especially cities are drivers of incredible economic prosperty as they provide a dense and efficient network of people, equipment and services.
+What has traditionally be lacking in these urban environments however is food production.
+And so humans still need to rely on area and water intensive traditional agriculture in rural regions to produce their food.
+
+% This work presents a concept which aims to address these problems \- \ac{cea} and in particular urban vertical farming.
+
+
+
+Higher interconnectedness comes at the cost of increased reliance on other global actors and autocrats.
+And as we have seen in the last years with the attack on Ukraine, heavy reliance on non democratic regimes 
+food safety is still an issue in the world - famines have played significant role in downfall of civilizations in the past.
+
 The motivation for this work is threefold.
 One, crafting ideal human environment in the context of smart city.
 - Taking advantage of synergies.
@@ -29,10 +57,35 @@ Three, most important to the author, global sustainability of human civilization
 - water use - pesticide use and water ?artrification? - local food production - freeing up area for natural ecosystems
 
 ?Mehr auslegen einer Vision? - Imagine the future city. Clean green walls dampen the sound of cars, provide cooling in the hot summer months. %@vincent
+More people in cities.
+More sustainable production systems needed.
+Land use of agriculture precise value.
+Water use of agriculture precice value.
+Greenhouse Gas emissions of agriculture precise value.
+Good sources in this paper https://doi.org/10.3390/horticulturae10020117.
 
 
 
 \section{Problem Statement}
+The last decade has seen the advent of a novel approach to agriculture to tackle these problems.
+\ac{cea} and in particular urban vertical farming want to control the plants environment more fully to lessen the reliance on climate.
+This method has a number of benefits over traditional agriculture.
+- less area needed
+- significantly less water use
+- no water ?atrification?
+- no dependence on climate conditions
+- no need for pesticides and therefore clean food
+- more regional food production
+If we want to tackle the problems posed above
+Introduce benefits of vertical farming
+
+Companies such as ... and ... try to seperate the plants completely from the elements and control the environment they are in fully.
+This of course is great for reproducibility and quality.
+However as we will show later in \ref{chap:analysis-and-arch} current commercially operating farms with this approch have one main problem.
+Energy consumption.
+This makes them economically less competitive to traditional agriculture and shifts the resource usage from water and land area to energy.
+Not ideal for Germany, a country which still relies to ... \% on fossil fuels for its energy production \textcolor{blue}{ref for concrete number}.
+
 From the three main motivations laid out before we can extract the main problems of these areas.
 One - Air quality - disconnection from nature - buildings not properly insulated, taking advantage of synergies. 
 Two - Reliance on a few agricultural plentiful areas in the world to sustain the hunger of the human population - These might change as climate patterns will shift.
@@ -50,38 +103,23 @@ This results in high energy
 
 \section{Solution Proposal}
 % \subsection{Goals and Contributions}
-First we shall look
-- Gliederung der Arbeit
+This work will introduce a plant irrigation system in the form of panels.
+These panels shall be mounted on building facades and be protected from the elements by an additional layer of glass.
+With this we can provide all of the benefits over traditional agriculure which have been discussed before.
+Simultaneously this arrangement addresses the main problem of present vertical farming systems by not relying on a completely artificial environment and instead using existing resources to cultivate the plants.
+Namely natural lighting by the sun and vertical area of city infrastructure.
+% This provides the benefits in contrast to traditional agriculture clean, regional food is produced.
+% However in contrast to commercially operating vertical farms this arrangement allows to use existing resources to cultivate the plants.
+% However it still comes with all of the benefits over traditional agriculture which have been discussed before.
+% as the area use is vertical instead of horizontally and water use is cut significantly.
 
- \begin{tikzpicture}                                                                                                 
- \draw[->] (0,0) -- (4,0) node[right] {East};                                                                        
- \draw[->] (0,0) -- (0,4) node[above] {North};                                                                       
- \draw (2,0) -- (2,3) node[midway, right] {GHI};                                                                     
- \end{tikzpicture}       
+Additionally it provides even more benefits resulting from the tight integration into its environment and distributed nature of deployment.
+double use as building insulation.
 
-                                                                                                                     
- \begin{tikzpicture}                                                                                                 
- \draw[->] (0,0) -- (4,0) node[right] {East};                                                                        
- \draw[->] (0,0) -- (0,4) node[above] {North};                                                                       
- \draw (2,0) -- (2,3) node[midway, right] {DNI};                                                                     
- \draw[->, red] (2,3) -- (2,0);                                                                                      
- \end{tikzpicture}  
-
- \begin{tikzpicture}                                                                                                 
- \draw[->] (0,0) -- (4,0) node[right] {East};                                                                        
- \draw[->] (0,0) -- (0,4) node[above] {North};                                                                       
- \draw (2,0) -- (2,3) node[midway, right] {DHI};                                                                     
- \draw[->, blue] (2,3) -- (1,0);                                                                                     
- \draw[->, blue] (2,3) -- (3,0);                                                                                     
- \end{tikzpicture}                                                                                                   
-
-                                                                                                                      
- \begin{tikzpicture}                                                                                                 
- \draw[->] (0,0) -- (4,0) node[right] {East};                                                                        
- \draw[->] (0,0) -- (0,4) node[above] {North};                                                                       
- \draw (2,0) -- (2,3) node[midway, right] {POA};                                                                     
- \draw[->, red] (2,3) -- (2,0);                                                                                      
- \draw[->, blue] (2,3) -- (1,0);                                                                                     
- \draw[->, blue] (2,3) -- (3,0);                                                                                     
- \draw[->, green] (2,0) -- (2,1);                                                                                    
- \end{tikzpicture}      
+This work will introduce a urban farming concept providing clean, regional food while simultaniously providing insulation to existing buildings and improving city climate.
+The solution presented consists of panels which can be retrofitted on existing building
+Let us imagine a future city where old buildings have been retrofitted with insulating tiles. These tiles shall 
+- improvement of quality of life factors inside cities such as improved air quality, beautifying building facades and creating awareness for plants and human food production
+- providing clean, regional food for cities
+- insulate existing buildings for more energy efficiency and sound isolation
+- help with regulating city climate during heat waves
