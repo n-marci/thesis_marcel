@@ -2,7 +2,7 @@ package vertical_farm
   model airvolume
     Buildings.HeatTransfer.Sources.FixedTemperature building_air(T = 293.15) annotation(
       Placement(transformation(origin = {170, -10}, extent = {{10, -10}, {-10, 10}})));
-    Buildings.Fluid.MixingVolumes.MixingVolume farm_air(m_flow_nominal = 0.001, V = 594, redeclare package Medium = Buildings.Media.Air "Moist air", nPorts = 2) annotation(
+  Buildings.Fluid.MixingVolumes.MixingVolume farm_air(m_flow_nominal = 0.001, V = 594, redeclare package Medium = Buildings.Media.Air "Moist air", nPorts = 2) annotation(
       Placement(transformation(origin = {-10, -30}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     Buildings.HeatTransfer.Conduction.SingleLayer building_glass_conduction(A = 581.04, material = glass) annotation(
       Placement(transformation(origin = {70, 70}, extent = {{-10, -10}, {10, 10}})));
@@ -70,7 +70,7 @@ package vertical_farm
     Modelica.Blocks.Continuous.Integrator led_cumulative_power_draw(k = 1/(60*60)) annotation(
       Placement(transformation(origin = {-110, -66}, extent = {{-10, -10}, {10, 10}})));
     Buildings.Fluid.Sources.Outside_CpLowRise outside_air_pressure(nPorts = 4, redeclare package Medium = Buildings.Media.Air "Moist air", azi = 0, s = 5) annotation(
-      Placement(transformation(origin = {-170, -150}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-190, -150}, extent = {{-10, -10}, {10, 10}})));
     Buildings.Airflow.Multizone.MediumColumn farm_air_column_bottom(redeclare package Medium = Buildings.Media.Air "Moist air", h = 22.5/2, densitySelection = Buildings.Airflow.Multizone.Types.densitySelection.actual) annotation(
       Placement(transformation(origin = {-20, -90}, extent = {{-10, -10}, {10, 10}})));
     Buildings.Airflow.Multizone.MediumColumn farm_air_column_top(redeclare package Medium = Buildings.Media.Air "Moist air", h = 22.5/2, densitySelection = Buildings.Airflow.Multizone.Types.densitySelection.actual) annotation(
@@ -81,6 +81,10 @@ package vertical_farm
       Placement(transformation(origin = {-70, -150}, extent = {{-10, -10}, {10, 10}})));
   Buildings.Airflow.Multizone.DoorOperable window_top(LClo = 0.001, redeclare package Medium = Buildings.Media.Air "Moist air", hOpe = 0.2, wOpe = 52.8) annotation(
       Placement(transformation(origin = {-50, 130}, extent = {{-10, -10}, {10, 10}})));
+  plant plant1 annotation(
+      Placement(transformation(origin = {-250, 50}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.Constant windspeed_and_direction_envelope1(k = 0) annotation(
+      Placement(transformation(origin = {-276, 82}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   equation
     connect(envelope_glass_outside_convection.solid, envelope_glass_conduction.port_a) annotation(
       Line(points = {{-110, -10}, {-100, -10}}, color = {191, 0, 0}));
@@ -152,7 +156,7 @@ package vertical_farm
     connect(farm_air.ports[2], farm_air_column_top.port_b) annotation(
       Line(points = {{-20, -30}, {-20, 24}}, color = {0, 127, 255}));
     connect(outside_air_pressure.weaBus, weaDat1.weaBus) annotation(
-      Line(points = {{-180, -150}, {-332, -150}, {-332, -72}, {-350, -72}}, color = {255, 204, 51}, thickness = 0.5));
+      Line(points = {{-200, -150}, {-332, -150}, {-332, -72}, {-350, -72}}, color = {255, 204, 51}, thickness = 0.5));
     connect(window_bottom.port_b1, farm_air_column_bottom.port_b) annotation(
       Line(points = {{-60, -144}, {-20, -144}, {-20, -100}}, color = {0, 127, 255}));
     connect(window_bottom.port_a2, farm_air_column_bottom.port_b) annotation(
@@ -160,22 +164,26 @@ package vertical_farm
     connect(window_bottom.y, window_bottom_opening_percent.y) annotation(
       Line(points = {{-80, -150}, {-119.5, -150}, {-119.5, -220}, {-193, -220}}, color = {0, 0, 127}));
     connect(window_bottom.port_a1, outside_air_pressure.ports[1]) annotation(
-      Line(points = {{-80, -144}, {-160, -144}, {-160, -150}}, color = {0, 127, 255}));
+      Line(points = {{-80, -144}, {-160, -144}, {-160, -150}, {-180, -150}}, color = {0, 127, 255}));
     connect(window_bottom.port_b2, outside_air_pressure.ports[2]) annotation(
-      Line(points = {{-80, -156}, {-160, -156}, {-160, -150}}, color = {0, 127, 255}));
+      Line(points = {{-80, -156}, {-160, -156}, {-160, -150}, {-180, -150}}, color = {0, 127, 255}));
     connect(window_top.port_b1, farm_air_column_top.port_a) annotation(
       Line(points = {{-40, 136}, {-20, 136}, {-20, 44}}, color = {0, 127, 255}));
     connect(window_top.port_a2, farm_air_column_top.port_a) annotation(
       Line(points = {{-40, 124}, {-20, 124}, {-20, 44}}, color = {0, 127, 255}));
     connect(window_top.y, window_bottom_opening_percent.y) annotation(
       Line(points = {{-60, 130}, {-406, 130}, {-406, -250}, {-178, -250}, {-178, -220}, {-192, -220}}, color = {0, 0, 127}));
-  connect(window_top.port_b2, outside_air_pressure.ports[3]) annotation(
-      Line(points = {{-60, 124}, {-396, 124}, {-396, -180}, {-160, -180}, {-160, -150}}, color = {0, 127, 255}));
-  connect(window_top.port_a1, outside_air_pressure.ports[4]) annotation(
-      Line(points = {{-60, 136}, {-396, 136}, {-396, -180}, {-160, -180}, {-160, -150}}, color = {0, 127, 255}));
+    connect(window_top.port_b2, outside_air_pressure.ports[3]) annotation(
+      Line(points = {{-60, 124}, {-396, 124}, {-396, -180}, {-160, -180}, {-160, -150}, {-180, -150}}, color = {0, 127, 255}));
+    connect(window_top.port_a1, outside_air_pressure.ports[4]) annotation(
+      Line(points = {{-60, 136}, {-396, 136}, {-396, -180}, {-160, -180}, {-160, -150}, {-180, -150}}, color = {0, 127, 255}));
+    connect(plant1.weaBus, weaDat1.weaBus) annotation(
+      Line(points = {{-260, 50}, {-340, 50}, {-340, -72}, {-350, -72}}, color = {255, 204, 51}, thickness = 0.5));
+    connect(windspeed_and_direction_envelope1.y, plant1.v) annotation(
+      Line(points = {{-276, 71}, {-276, 60}, {-262, 60}}, color = {0, 0, 127}));
     annotation(
       Diagram(coordinateSystem(extent = {{-380, 100}, {200, -140}}), graphics = {Rectangle(origin = {-90, 35}, extent = {{-50, 63}, {50, -63}}), Rectangle(origin = {70, 59}, extent = {{-48, 35}, {48, -35}}), Rectangle(origin = {70, -79}, extent = {{48, -47}, {-48, 47}})}),
-      experiment(StartTime = 0, StopTime = 30758400, Tolerance = 1e-06, Interval = 61516.8));
+      experiment(StartTime = 0, StopTime = 3.07584e+07, Tolerance = 1e-06, Interval = 307.584));
   end airvolume;
 
   model testing3
@@ -441,6 +449,56 @@ package vertical_farm
   </ul>
   </html>"));
   end orifice_operable;
+
+  model plant
+  //Modelica.Blocks.Math.Add total_solar_irradiance annotation(
+  //    Placement(transformation(origin = {-310, 2}, extent = {{-10, -10}, {10, 10}})));
+  //Modelica.Blocks.Interfaces.RealInput h_dir annotation(
+  //    Placement(transformation(origin = {-400, 30}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-120, 40}, extent = {{-20, -20}, {20, 20}})));
+  //Modelica.Blocks.Interfaces.RealInput h_dif annotation(
+  //    Placement(transformation(origin = {-400, -28}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-120, -40}, extent = {{-20, -20}, {20, 20}})));
+  //Modelica.Blocks.Interfaces.RealInput pAtm annotation(
+  //    Placement(transformation(origin = {-400, -90}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-120, -82}, extent = {{-20, -20}, {20, 20}})));
+  Buildings.BoundaryConditions.WeatherData.Bus weaBus annotation(
+      Placement(transformation(extent = {{-110, -10}, {-90, 10}}), iconTransformation(extent = {{-120, -18}, {-80, 22}})));
+  Modelica.Blocks.Interfaces.RealInput v(unit="m/s") "Wind speed" annotation (
+      Placement(transformation(extent={{-140,80},{-100,120}})));
+  Buildings.BoundaryConditions.SolarIrradiation.DiffuseIsotropic HDifTilIso(til = 1.5707963267948966) annotation(
+      Placement(transformation(origin = {-50, 50}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Interfaces.RealOutput y annotation(
+      Placement(transformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {110, 40}, extent = {{-10, -10}, {10, 10}})));
+  Real et_r(final unit = "mm/h") "reference evapotranspiration";
+  Real delta(final unit = "kPa/°C") "hourly slope of the vapor pressure curve";
+  Real r_n(final unit = "MJ/(m2*h)") "hourly net radiation flux";
+  Real gamma(final unit = "kPa/°C") "psychrometric constant";
+  Real c_n(final unit = "1") = 37 "numerator constant for the reference crop type and time step";//@lopez_mora2024
+  Real e_s(final unit = "kPa") "saturation vapor pressure";
+  Real e_a(final unit = "kPa") "actual vapor pressure";
+  Real vpd(final unit = "kPa") "vapor pressure deficit";
+  Real c_d(final unit = "1") "denominator constant for the reference crop type and time step";
+  
+  equation
+//connect(h_dir, total_solar_irradiance.u1) annotation(
+//    Line(points = {{-400, 30}, {-340, 30}, {-340, 8}, {-322, 8}}, color = {0, 0, 127}));
+//connect(h_dif, total_solar_irradiance.u2) annotation(
+//    Line(points = {{-400, -28}, {-340, -28}, {-340, -4}, {-322, -4}}, color = {0, 0, 127}));
+    connect(HDifTilIso.weaBus, weaBus) annotation(
+      Line(points = {{-60, 50}, {-80, 50}, {-80, 0}, {-100, 0}}, color = {255, 204, 51}, thickness = 0.5));
+  delta = 4098 * (0.6108 * Modelica.Math.exp((17.27 * (weaBus.TDryBul-273.15))/((weaBus.TDryBul-273.15) + 237.3))) / (((weaBus.TDryBul-273.15) + 237.3)^2);
+  r_n = 200;
+  gamma = 0.000665 * weaBus.pAtm/1000;
+  e_s = 0.6108 * Modelica.Math.exp((17.27 * (weaBus.TDryBul-273.15))/((weaBus.TDryBul-273.15) + 237.3));
+  e_a = 0.6108 * Modelica.Math.exp((17.27 * (weaBus.TDewPoi-273.15))/((weaBus.TDewPoi-273.15) + 237.3));
+  vpd = e_s - e_a;
+  //c_d = 0.24;
+  if (weaBus.HGloHor == 0) then
+    c_d = 0.96;
+  else
+    c_d = 0.24;
+  end if;
+  et_r = (0.408 * delta * r_n + gamma * c_n * v * (e_s - e_a) / weaBus.TDryBul) / (delta + gamma * (1 + c_d * v));
+  y = et_r;
+  end plant;
   annotation(
     uses(Buildings(version = "11.0.0"), Modelica(version = "4.0.0")));
 end vertical_farm;
