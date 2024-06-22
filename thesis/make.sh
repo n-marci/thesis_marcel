@@ -1,3 +1,3 @@
-pdflatex Masterarbeit.tex
-pdflatex Masterarbeit.tex
+pdflatex masterthesis.tex
+pdflatex masterthesis.tex
 rm *.aux *.lof *.log *.lot *.toc
