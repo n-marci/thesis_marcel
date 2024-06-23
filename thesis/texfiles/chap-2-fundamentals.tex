@@ -2,71 +2,85 @@
 \chapter{Fundamentals}
 \label{chap:fundamentals}
 
-\section{Heat Transfer}
+\section{Thermodynamics}
+\textcolor{Blue}{How do I cite best here? Whole section is based on} @cengel2003.
+
 \subsection{Types of Heat}
 Heat can be classified into two different forms.
 There is sensible heat which directly causes a temperature change in a material.
 And there is latent heat which is responsible for the phase change of a material.
-During the phase change, there is no temperature change from heat added into or substracted from the system.
-Total heat transfered during a process is denoted by $Q$ and the rate at which this happens is signified with $\dot{Q}$ carrying the unit Watt.
+During the phase change, there is no temperature change from heat added into or subtracted from the system.
+% Water evaporating from a leave falls into this category.
+Total heat transferred during a process is denoted by $Q$ and the rate at which this happens is signified with $\dot{Q}$ carrying the unit Watt.
 This heat transfer rate $\dot{Q}$ is what we will look at next.
 
-\subsection{Types of Heat Transfer}
-@cengel2003
+\subsection{Heat Transfer}
 Heat transfer can fundamentally occur in three different forms.
 Conduction, Convection and Radiation.
 
 \textit{Conduction} refers to heat moving through a material.
-It is characterised by the heat conductivity $k$ specific to the substance in question and can be modeled by Fourier's law
+It is characterized by the heat conductivity $k$ specific to the substance in question and can be modeled by Fourier's law
 $$
 \dot{Q}_{cond} = -k \frac{A}{L} \Delta T
-$$,
+$$
 where $A$ is the area through which the conduction takes place, $L$ is the distance and $\Delta T$ is the temperature difference.
-\textit{Convection} is heat transfered on the boundary between a solid and a fluid.
+\textit{Convection} is heat transferred on the boundary between a solid and a fluid.
 The characteristic value for this interaction is the convection heat transfer coefficient $h$ while the mathematical description is given by Newton's law of cooling
 $$
 \dot{Q}_{conv} = h A \Delta T
-$$,
+$$
 with $A$ being again the area, and $\Delta T$ the temperature difference.
-\textit{Radiation} 
+\textit{Radiation} describes heat transfer via electromagnetic waves.
+Any material possessing a temperature greater absolute zero will emit some heat to its surroundings.
+For a black body -- an idealized concept absorbing all incident radiation -- this heat flux density is given by the Stefan-Boltzmann Law.
+For real materials the emissivity $\epsilon$ and the objects' surface area $A$ are taken into account to get
+$$
+\dot{Q}_{rad} = \epsilon \sigma A (T^4 - T_{surr}^4)
+$$
+where $T$ is the material temperature, $\sigma$ is the Stefan-Boltzmann constant and $T_{surr}$ describes the temperature of an idealized sphere infinitely far from the object.
+Looking at incoming radiation, we have the characteristic value of absorptivity $\alpha$.
+This is combined with the incident radiation $\dot{Q}_{inci}$ to obtain 
+$$
+\dot{Q}_{abso} = \alpha \dot{Q}_{\text{inci}} 
+$$
+for captured heat flux by a material.
 
-To be able to understand the implementation of the simulation discussed later in \textcolor{blue}{needs ref}, we first need to introduce the basics of heat transfer. 
-There are three different forms in which heat transfer can occur.
-First Conduction, which describes heat moving through a solid material. This property can be characterised by the heat conductivity $k$ for the specific material.
-The mathematical model equation will be introduced later with the heat capacity in \ref{sub:ther-props}.
-Second we have Convection.
-This is heat transfer which happens between the surface of a solid material and a fluid.
-Last the transfer can occur via radiation.
-As the name implies this is basically heat energy transmitted with electromagnetic rediation.
-These will all be modeled seperately later.
-\textcolor{blue}{How about heat transfer via mass transfer?}
-\textcolor{blue}{some sources also have advection - what's that?}
-\textcolor{blue}{Difference between sensible and latent heat flow.}
+Conveniently these physical relations are already modeled in the Modelica Standard Library and further built upon with the Buildings Library.
+\textcolor{Blue}{Should I introduce here already the modelica models which implement this?}
 
-\subsection{Other important thermodynamic properties}
+
+
+\subsection{Other relevant thermodynamic properties}
 \label{sub:ther-props}
-Explain Heat Capacity.
+Explain Heat Capacity.\\
+Heat transfer via mass transfer.\\
+\textcolor{Blue}{Shall I put references here for what the fundamentals are needed? Like latent heat to determine evaporation cooling, mass transfer for ventilating?}
 
 
 
-\section{Systems Modelling Approach}
+% \section{Systems Modelling Approach}
 
 \section{Agricultural and CEA Basics}
 In the center of \ac{cea} stands the plant.
 The environment is crafted to provide optimal conditions.
 
-\subsection{Irradiance}
+\subsection{Illumination}
+For illumination a few factors are of importance.
+Instant irradiance and time dependent factors like dli and dark period.
+
+For irradiance there are two important factors which define instant irradiance.
+Spectrum and irradiance power.
 \subsubsection{Irradiance on a tilted surface}
 
 \subsubsection{Solar spectrum and photosynthesis}
 When assessing the optimal lighting conditions for plant growth, several factors need to be illuminated.
-Pun intended.
+Lol illuminated.
 Light spectrum, Instantenous light intensity, Cumulative light amount and Photoperiod
 
 For quantifying \textit{spectrum} and \textit{instantenous intensity} we will introduce \ac{par} and \ac{ppfd}.
 As discussed before we want to 
 How do we quantify the solar irradiance 
-Plants use solar radiation in the spectrum from 400 nm to 700 nm \textcolor{blue}{needs ref} for photosynthesis.
+Plants use solar radiation in the spectrum from 400 nm to 700 nm \textcolor{Blue}{needs ref} for photosynthesis.
 This is only a portion of the actual solar radiation which is hitting earth.
 For the \textit{natural} solar radiation in the context of plant growth, the concept of \ac{par} is most often used.
 This describes the solar radiation which lies inside the aforementioned range for photosynthesis and can be calculated with a simple conversion factor @reis2020.
@@ -78,15 +92,66 @@ They both carry the same unit and except for their natural or artificial origin,
 To quantify the \textit{cumulative light amount} and \textit{photoperiod} for a whole day, we simply accumulate \ac{par} and \ac{ppfd} over one day.
 This is called \ac{dli}.
 
+For artificial lighting, the spectrum will lie inside the photosynthetically active spectrum, since they are made specifically for plant cultivation.
+And so the ppfd is taken directly.
+Further optimization can be done by adjusting the red, green, blue ratios.
+This is not taken into account however, since we will illuminate outside areas.
+Therefore, white light is chosen to not disturb the inhabitants of the building with irritating light colors.
+
 LEDs are chosen because of their high efficiency and possibility to adjust the light spectrum granuarly.
 
-\subsection{Irrigation}
-Soilless Agriculture - Hydroponics - Aeroponics
 
-Aeroponics and specially fogponic system is chosen because of the lightweight nature and ease of deployment.
+
+\subsection{Irrigation}
+Water and Nutrients in \ac{cea} are mixed and delivered to the plants directly by a process known as fertigation.
+For the most part the roots are taken care of directly, without the use of any soil.
+Substrates such as rockwool or perlite provide alternatives but are no necessity.
+This soilless method of cultivation is referred to as \textit{hydroponics}.
+Hydroponic systems use less water and enable greater plant densities than traditional agriculture.
+They offer high consistency and a tight control on water and nutrient delivery.
+
+Multiple different techniques like \ac{nft}, deep water culture and \textit{aeroponics} have developed over the years for differing use cases.
+Aeroponic systems are special, in that the roots of the plants are not submerged in water.
+Instead, they are surrounded entirely by air and either sprayed or misted with fog.
+% This reduces water usage even further by 65\% \textcolor{Blue}{https://en.wikipedia.org/wiki/Hydroponics#cite_note-:1-48}.
+This relieves two of the main problems with hydroponics.
+Disease and aeration.
+In case of a single infected plant, the disease can be carried by the nutrient solution to the whole system without proper sterilization.
+In aeroponics all roots are sprayed with fresh solution, therefore contamination does not spread easily.
+Additionally, as the underground part of the plant does not perform photosynthesis but certainly needs oxygen for cellular respiration, water in hydroponics needs to be aerated.
+This can obviously be dropped if the root zone is suspended in air already.
+Because of this enhanced gas exchange, in theory a wider variety of plants can be cultivated compared to systems which submerge the roots in water.
+% In theory a system like this can sustain any plant species.
+% However, especially for aeroponics only a smaller variety of plant species have been demonstrated to grow reliably.
+% However, because of the tighter control requirements so the roots do not dry out, this technique is not industry standard.
+% However, because of the more severe consequences of a malfunction -- the roots dry out quickly and the plants die off -- this technique is not industry standard.
+However, roots dry out quickly and plants die in case of a malfunction.
+Therefore, this technique is not industry standard and generally has tighter requirements for control.
+
+For this work we will employ an aeroponic system because of the lightweight nature and high flexibility.
+The strong requirement for control will be alleviated by the use of separate units -- the plant panels -- compartmentalizing any damage potential.
+
+% Aeroponics less water, less nutrient use.
+
+
 
 \subsection{Atmosphere}
-Vapor pressure - VPD
-CO2 concentrations
+For air surrounding the plant, there are three main properties which play a role in its growth and water usage.
+Wind speed, \ac{vpd} and $\text{CO}_2$ concentration.
+\textit{Wind speed} is quite self-explanatory.
+\textit{\ac{vpd}} (kPa) combines the humidity and temperature into a single value.
+It is calculated by first computing the \ac{svp} (kPa) \textcolor{Blue}{use SI latex package} for a given temperature $T$ (°C), $SVP = 0.611 e^{\frac{17.27 T}{T + 237.3}}$ and then taking \ac{rh} (\%) to obtain
+$$
+VPD = SVP \times (1-\frac{RH}{100}) \quad \text{@howell1995}.
+$$
+\textcolor{Blue}{VPD and SVP cursive everywhere or straight in the equation? What's the convention?}
+\textit{$\text{CO}_2$} is next to water the main input for photosynthesis.
+In \ac{cea}, levels are often elevated to achieve higher yields.
+This is not implemented in our concept, since the farm air will interface with humans in the building.
+
+\ac{cea} facilities also oftentimes spend significant resources to condition the air with \ac{hvac} systems.
+Following the theme of minimizing energy consumption however, passive air cooling is chosen.
+
+Explain Evapotranspiration.
 
 

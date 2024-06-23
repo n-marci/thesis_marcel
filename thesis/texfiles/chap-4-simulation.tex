@@ -3,16 +3,36 @@
 \label{chap:simulation}
 %
 \section{Introduction to the Simulation Environment}
-\subsection{Evapotranspiration}
+
+\section{Introduction to the developed models}
+
+\subsection{Plant Model}
+\subsubsection{Evapotranspiration}
 References for the ET calculation:\\
 https://etcalc.hydrotools.tech/pageMain.php\\
 https://www.fao.org/4/X0490E/x0490e07.htm\\
 https://www.fao.org/4/X0490E/x0490e0k.htm\\
 
+\subsubsection{Yield}
+An initial state had to be given for $x_{nsdw}$ and $x_{sdw}$ to avoid a division with zero.
+
+\subsection{Physical Environment Model}
+
+\subsection{LED Model}
+\subsection{Pump Model}
+\subsection{Air Conditioning Model}
+Note that $\text{CO}_2$ concentrations are not dynamically calculated in the simulation and the humidity contribution from the plants is not considered.
+The reason for this, is that the air volume component allowing for dynamic calculation led to frequent convergence errors not further investigated in this work.
+The chosen value for $\text{CO}_2$ is 365 ppm, which is an average value for the atmosphere https://doi.org/10.1111/j.1365-3040.2007.01641.x.
+For the \ac{vpd} calculation, humidity levels are taken from weather data and temperature from the farm air volume.
+
+
+
 \section{Simulation Architecture}
 \textcolor{blue}{Buildings.ThermalZones.ReducedOrder.RC.TwoElements for Radiation modelling}
-\subsection{Yield Model}
-An initial state had to be given for $x_{nsdw}$ and $x_{sdw}$ to avoid a division with zero.
+
 \section{Analysis of Energy Use and Comparison with State of the Art}
-\section{Results}
-\label{sec:simulation-results}
+\label{sec:sim-energy-and-comparison}
+
+% \section{Results}
+% \label{sec:simulation-results}

@@ -105,7 +105,7 @@ package vertical_farm
       Placement(transformation(origin = {-250, 50}, extent = {{-10, -10}, {10, 10}})));
   plant_yield plant_yield1(a_plant = 523.2)  annotation(
       Placement(transformation(origin = {-250, 130}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.Constant co2_concentration(k = 350) annotation(
+  Modelica.Blocks.Sources.Constant co2_concentration(k = 365) annotation(
       Placement(transformation(origin = {-272, 178}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Buildings.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirRoo11(azi = 0.7330382858376184, til(displayUnit = "deg") = 1.5707963267948966) annotation(
       Placement(transformation(origin = {-400, 102}, extent = {{20, 20}, {40, 40}})));
