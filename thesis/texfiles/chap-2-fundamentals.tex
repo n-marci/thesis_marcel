@@ -61,6 +61,8 @@ Heat transfer via mass transfer.\\
 % \section{Systems Modelling Approach}
 
 \section{Agricultural and CEA Basics}
+To understand \ac{cea}, we need to understand photosynthesis.
+
 In the center of \ac{cea} stands the plant.
 The environment is crafted to provide optimal conditions.
 
@@ -100,6 +102,8 @@ Therefore, white light is chosen to not disturb the inhabitants of the building 
 
 LEDs are chosen because of their high efficiency and possibility to adjust the light spectrum granuarly.
 
+Typical values for solar radiation and artificial illumination.
+
 
 
 \subsection{Irrigation}
@@ -136,22 +140,62 @@ The strong requirement for control will be alleviated by the use of separate uni
 
 
 \subsection{Atmosphere}
-For air surrounding the plant, there are three main properties which play a role in its growth and water usage.
-Wind speed, \ac{vpd} and $\text{CO}_2$ concentration.
-\textit{Wind speed} is quite self-explanatory.
-\textit{\ac{vpd}} (kPa) combines the humidity and temperature into a single value.
-It is calculated by first computing the \ac{svp} (kPa) \textcolor{Blue}{use SI latex package} for a given temperature $T$ (°C), $SVP = 0.611 e^{\frac{17.27 T}{T + 237.3}}$ and then taking \ac{rh} (\%) to obtain
+As elaborated before, optimizing photosynthesis -> chemical components.
+
+Optimizing the atmosphere in \ac{cea} boils down to one procedure.
+Enhancing photosynthesis.
+There are two chemical inputs required to make this process happen.
+% Additionally, there needs to be energy put in.
+CO$_2$ and H$_2$O.
+
+\textit{CO$_2$} is quite straight forward.
+The availability to the plant can be enhanced by elevating concentration in the surrounding air.
+This is not necessary of course, but is routinely done to increase yields in greenhouse settings.
+Secondly the plant needs \textit{water}.
+However only a small amount of water is actually used in metabolic processes such as photosynthesis.
+About \SI{99}{\percent} of the H$_2$O is actually transpirated \textcolor{Blue}{needs ref} to continually move nutrients up from the roots.
+This is historically modeled for crops by a process known as evapotranspiration.
+Combining evaporation from the soil and transpiration of the plant body.
+Since we are not dealing with soil, we only need to look at transpiration.
+The characteristic concept capturing this process into a single value is \ac{vpd}.
+% The most important concept needed to understand this, is \ac{vpd}.
+\textit{\ac{vpd}} (\si{\kPa}) describes humidity and temperature of the air.
+It is calculated by first computing the \ac{svp} (\si{\kPa}) for a given temperature $T$ (\si{\degreeCelsius}), 
+$$
+SVP = 0.611 e^{\frac{17.27 T}{T + 237.3}}
+$$
+and then using \ac{rh} (\si{\percent}) to obtain
 $$
 VPD = SVP \times (1-\frac{RH}{100}) \quad \text{@howell1995}.
 $$
 \textcolor{Blue}{VPD and SVP cursive everywhere or straight in the equation? What's the convention?}
-\textit{$\text{CO}_2$} is next to water the main input for photosynthesis.
-In \ac{cea}, levels are often elevated to achieve higher yields.
-This is not implemented in our concept, since the farm air will interface with humans in the building.
 
+High \ac{vpd} means dry air.
+Too high and the plant will close its pores to limit water loss, restricting photosynthesis.
+A low value suggests that the air is already saturated and transpiration is also impeded.
+Typical values range from ... to ... and the ideal value depends on the crop and its growth state.
+
+% There are several factors influencing the health and productivity of crop plants.
+% We will be looking into two plant models and explain their inputs.
+% Evapotranspiration and Yield.
+
+% For air surrounding the plant, there are three main properties which play a role in its growth and water usage.
+% Wind speed, \ac{vpd} and $\text{CO}_2$ concentration.
+% \textit{Wind speed} is quite self-explanatory.
+% \textit{\ac{vpd}} (\si{\kPa}) combines the humidity and temperature into a single value.
+% It is calculated by first computing the \ac{svp} (\si{\kPa}) for a given temperature $T$ (\si{\degreeCelsius}), 
+% $$
+% SVP = 0.611 e^{\frac{17.27 T}{T + 237.3}}
+% $$
+%  and then taking \ac{rh} (\si{\percent}) to obtain
+% $$
+% VPD = SVP \times (1-\frac{RH}{100}) \quad \text{@howell1995}.
+% $$
+% \textcolor{Blue}{VPD and SVP cursive everywhere or straight in the equation? What's the convention?}
+% \textit{$\text{CO}_2$} is next to water the main input for photosynthesis.
+Our concept will not implement carbon dioxide enrichment, since the farm air will interface with humans in the building.
+% In \ac{cea}, levels are often elevated to achieve higher yields.
+% This is not implemented in our concept, since the farm air will interface with humans in the building.
 \ac{cea} facilities also oftentimes spend significant resources to condition the air with \ac{hvac} systems.
-Following the theme of minimizing energy consumption however, passive air cooling is chosen.
-
-Explain Evapotranspiration.
-
+Following the theme of minimizing energy consumption, passive air cooling is chosen.
 
