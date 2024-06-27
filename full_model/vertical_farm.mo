@@ -41,7 +41,7 @@ package vertical_farm
     Buildings.BoundaryConditions.WeatherData.Bus weaBus annotation(
       Placement(transformation(origin = {-268, -30}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-274, -32}, extent = {{-10, -10}, {10, 10}})));
 
-    Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(filNam = "/home/marci/dev/ma/irradiance_model/tmy/DEU_BY_Nurnberg.AP.107630_TMYx.mos") annotation(
+    Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(filNam = "/home/marci/Downloads/DEU_BY_Nurnberg.AP.107630_TMYx.2007-2021/DEU_BY_Nurnberg.AP.107630_TMYx.2007-2021.mos") annotation(
       Placement(transformation(origin = {-320, -102}, extent = {{-60, 20}, {-40, 40}})));
     Buildings.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirRoo(azi (displayUnit = "deg")= 0.7330382858376184, til(displayUnit = "deg") = 1.5707963267948966) annotation(
       Placement(transformation(origin = {-322, -102}, extent = {{20, 20}, {40, 40}})));
@@ -79,7 +79,7 @@ package vertical_farm
       Placement(transformation(origin = {-150, -110}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Continuous.Integrator pump_daily_power_draw(k = 1/(60*60), use_reset = true) annotation(
       Placement(transformation(origin = {-110, -110}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.SampleTrigger daily_trigger(period = 86400)  annotation(
+  Modelica.Blocks.Sources.SampleTrigger daily_trigger(period = 31536000)  annotation(
       Placement(transformation(origin = {-150, -132}, extent = {{-10, -10}, {10, 10}})));
   Buildings.Electrical.DC.Sources.PVSimple pVSimple(A = 1212, eta = 0.2, V_nominal = 24)  annotation(
       Placement(transformation(origin = {-290, -250}, extent = {{-10, -10}, {10, 10}})));
@@ -657,7 +657,7 @@ package vertical_farm
     Real c_cap_gamma(final unit = "ppm") = 40 "CO2 compensation point at 20°C";
     Real c_q_10_cap_gamma(final unit = "1") = 2.0 "Sensitivity of CO2 compensation with canopy temperature";
     
-    Real c_epsilon(final unit = "g/J") = 17e6 "Quantum use efﬁciency as energy required for a reduction of one molecule of CO2";
+    Real c_epsilon(final unit = "g/J") = 17e-6 "Quantum use efﬁciency as energy required for a reduction of one molecule of CO2";
     
     Real g_bnd(final unit = "m/s") = 0.007 "Boundary layer conductance";
     Real g_stm(final unit = "m/s") = 0.005 "Stomatal conductance";
@@ -670,7 +670,7 @@ package vertical_farm
     
   equation
     
-    der(x_nsdw) = c_alpha ;
+    der(x_nsdw) = c_alpha * f_phot - r_gr * x_sdw - f_resp - ((1 - c_beta) / c_beta) * r_gr * x_sdw;
     f_resp = (c_resp_sht * (1 - c_tau) * x_sdw + c_resp_rt * c_tau * x_sdw) * c_q_10_resp ^ (((air_temperature-273.15) - 25) / 10);
     f_phot = (1 - exp(-c_k * c_lar * (1 - c_tau) * x_sdw)) * f_phot_max;
     
@@ -687,6 +687,24 @@ package vertical_farm
     y = dw;
   
   end plant_yield;
+
+  model system_analysis
+  plant_yield plant_yield1(a_plant = 1, x_nsdw(start = 20*0.015*0.25), x_sdw(start = 20*0.015*0.75))  annotation(
+      Placement(transformation(origin = {10, 30}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.Constant const(k = 30+ 273.15)  annotation(
+      Placement(transformation(origin = {-50, 50}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.Constant const1(k = 1200)  annotation(
+      Placement(transformation(origin = {-50, 30}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.Constant const2(k = 300/2.02)  annotation(
+      Placement(transformation(origin = {-50, 10}, extent = {{-10, -10}, {10, 10}})));
+  equation
+  connect(const.y, plant_yield1.air_temperature) annotation(
+      Line(points = {{-38, 50}, {-20, 50}, {-20, 38}, {-2, 38}}, color = {0, 0, 127}));
+  connect(const1.y, plant_yield1.co2_concentration) annotation(
+      Line(points = {{-38, 30}, {-2, 30}}, color = {0, 0, 127}));
+  connect(const2.y, plant_yield1.par) annotation(
+      Line(points = {{-38, 10}, {-20, 10}, {-20, 22}, {-2, 22}}, color = {0, 0, 127}));
+  end system_analysis;
   annotation(
     uses(Buildings(version = "11.0.0"), Modelica(version = "4.0.0")));
 end vertical_farm;

@@ -2,8 +2,23 @@
 \chapter{Fundamentals}
 \label{chap:fundamentals}
 
+To , we need to illuminate a few different systems.
+
 \section{Thermodynamics}
 \textcolor{Blue}{How do I cite best here? Whole section is based on} @cengel2003.
+This work wants to make statements about plant growth and insulation potential.
+Temperature information is needed to achieve that.
+Therefore, this section introduces some fundamentals from thermodynamics.
+They will make it possible to simulate heat flows and gather this data.
+
+% As this work wants to judge plant growth, temper
+
+% In this work the physical environment of the engineered system is simulated.
+% The resulting temperature information is used in the further modelling of plant growth.
+% To do this, we need to introduce some concepts from thermodynamics.
+% To model the physical environment our engineered system will be placed in, we need to introduce some concepts to describe heat flows.
+% This will enable us to later judge insulation potential.
+% Additionally, the resulting temperature information is needed as an input for the plant model.
 
 \subsection{Types of Heat}
 Heat can be classified into two different forms.
@@ -19,13 +34,13 @@ Heat transfer can fundamentally occur in three different forms.
 Conduction, Convection and Radiation.
 
 \textit{Conduction} refers to heat moving through a material.
-It is characterized by the heat conductivity $k$ specific to the substance in question and can be modeled by Fourier's law
+It is characterized by the heat conductivity $k$ (\si{\W\per\m\per\K}) specific to the substance in question and can be modeled by Fourier's law
 $$
 \dot{Q}_{cond} = -k \frac{A}{L} \Delta T
 $$
-where $A$ is the area through which the conduction takes place, $L$ is the distance and $\Delta T$ is the temperature difference.
+where $A$ (\si{\square\m}) is the area through which the conduction takes place, $L$ (\si{\m}) is the distance and $\Delta T$ (\si{\K}) is the temperature difference.
 \textit{Convection} is heat transferred on the boundary between a solid and a fluid.
-The characteristic value for this interaction is the convection heat transfer coefficient $h$ while the mathematical description is given by Newton's law of cooling
+The characteristic value for this interaction is the convection heat transfer coefficient $h$ (\si{\W\per\square\m\per\K}) while the mathematical description is given by Newton's law of cooling
 $$
 \dot{Q}_{conv} = h A \Delta T
 $$
@@ -33,13 +48,13 @@ with $A$ being again the area, and $\Delta T$ the temperature difference.
 \textit{Radiation} describes heat transfer via electromagnetic waves.
 Any material possessing a temperature greater absolute zero will emit some heat to its surroundings.
 For a black body -- an idealized concept absorbing all incident radiation -- this heat flux density is given by the Stefan-Boltzmann Law.
-For real materials the emissivity $\epsilon$ and the objects' surface area $A$ are taken into account to get
+For real materials the emissivity $\epsilon$ (-) and the objects' surface area $A$ are taken into account to get
 $$
 \dot{Q}_{rad} = \epsilon \sigma A (T^4 - T_{surr}^4)
 $$
-where $T$ is the material temperature, $\sigma$ is the Stefan-Boltzmann constant and $T_{surr}$ describes the temperature of an idealized sphere infinitely far from the object.
-Looking at incoming radiation, we have the characteristic value of absorptivity $\alpha$.
-This is combined with the incident radiation $\dot{Q}_{inci}$ to obtain 
+where $T$ (\si{\K}) is the material temperature, $\sigma$ (\si{\W\per\square\m\per\K\tothe{4}}) is the Stefan-Boltzmann constant and $T_{surr}$ (\si{\K}) describes the temperature of an idealized sphere infinitely far from the object.
+Looking at incoming radiation, we have the characteristic value of absorptivity $\alpha$ (-).
+This is combined with the incident radiation $\dot{Q}_{inci}$ (\si{\W}) to obtain 
 $$
 \dot{Q}_{abso} = \alpha \dot{Q}_{\text{inci}} 
 $$
@@ -61,7 +76,12 @@ Heat transfer via mass transfer.\\
 % \section{Systems Modelling Approach}
 
 \section{Agricultural and CEA Basics}
+\label{sec:fund-cea}
 To understand \ac{cea}, we need to understand photosynthesis.
+
+This will help us to understand what technology is needed in a modern agricultural system.
+And how this influences the biological system we are trying to take care of.
+This is important as we are trying to gauge the yield output of the crop later.
 
 In the center of \ac{cea} stands the plant.
 The environment is crafted to provide optimal conditions.
@@ -107,6 +127,7 @@ Typical values for solar radiation and artificial illumination.
 
 
 \subsection{Irrigation}
+\label{sub:fund-cea-irr}
 Water and Nutrients in \ac{cea} are mixed and delivered to the plants directly by a process known as fertigation.
 For the most part the roots are taken care of directly, without the use of any soil.
 Substrates such as rockwool or perlite provide alternatives but are no necessity.

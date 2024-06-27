@@ -1,9 +1,45 @@
 %Chapter 3
-\chapter{Theoretical Analysis and Architectural Approach}
+\chapter{Theoretical Analysis and Approach}
 \label{chap:analysis-and-arch}
+This chapter shall define the system and its boundaries.
+Define the goal of this work.
+This chapter will uncover the problem we are trying to solve.
+What it is we are trying to achieve.
+Then analysis of state of the art solutions.
 %
-\section{Energy Analysis}
-\label{sec:energy-analysis}
+\section{System Analysis}
+\label{sec:system-analysis}
+There exist different definitions for what a system is.
+For the engineer, it might be classified as a collection of elements with properties of interest @schmitt2019.
+Following this definition, we need to identify the systems' constituents.
+And then analyze what about them is of importance to us.
+% So what are the constituents, and which attributes need to considered?
+% We will define this by the necessary functions which a system like this needs to fulfill.
+This information is extracted from the objectives this work tries to optimize.
+Minimizing energy consumption and maximizing yield.
+% \begin{itemize}
+% 	\item Minimize energy consumption
+% 	% \item Provide insulation
+% 	% \item [Auxiliary condition] Maximize yield
+% 	\item Maximize yield
+% \end{itemize}
+These two goals are subjected to a sensitivity analysis in the following sections.
+% This enables us to gain an understanding which parameters of the system are the most relevant.
+This helps us to identify the most relevant parameters.
+
+% What elements have the biggest contribution to energy consumption?
+% And what is the sensitivity of the elements to the yield output?
+% Insulation will be evaluated but is no main design priority.
+
+There are elements consumed by the plant -- co2, water, light energy -- and there are ambient factors like air temperature and velocity.
+
+\subsection{Energy Analysis}
+\label{sub:energy-analysis}
+As introduced in the fundamentals \ref{sec:fund-cea}, there are three technical systems to take care of plant growth.
+Irrigation, Illumination and the atmosphere surrounding the plant.
+
+To be able to evaluate the energy impact of the different technical subsystems, we will look at current vertical farming system.
+
 Let us first examine current \ac{cea} and vertical farming approaches to get a better understanding of the solution methods and shortcomings.
 Current solutions try to achieve high degree of automation and full control over the environment.
 This results in high energy
@@ -15,9 +51,118 @@ Energy consumption.
 This makes them economically less competitive to traditional agriculture and shifts the resource usage from water and land area to energy.
 Not ideal for Germany, a country which still relies to ... \% on fossil fuels for its energy production \textcolor{blue}{needs ref}.
 
+\subsubsection{Commercial Farms}
+In recent years, hype surrounding vertical farming has slowed significantly.
+Multiple commercial endeavors declared bankruptcy \textcolor{Blue}{needs ref}.
+\textcolor{Blue}{How do I cite recent developments? Like companies going out of business?}
+Especially in Europe where Energy prices surged in the last years.
+One notable example is InFarm -- a Berlin startup which was able to gather significant funding.
+Despite the financial backing, all European branches have seized operation.
+They restructured and continue to function in the Middle East, where energy is less of a concern than water scarcity.
+% They continue to function in the Middle East, but European branches have seized operation.
+The company itself has cited high cost from energy consumption as the primary reason.
+This does not provide deep insight into the problematic subsystems.
+However, it validates the foundational assumption to minimize energy need.
+
+\subsubsection{Research Farms}
 
 
-\section{Presentation of the General Concept}
+
+\subsection{Yield Analysis}
+\label{sub:yield-analysis}
+Since yield is very plant specific, we first need to establish which crop shall be grown.
+We choose one crop to optimize, however it is assumed that similar dynamics also play a role in other plant species.
+This is important, since this work tries to establish a general system.
+It does not aim to overfit to a specific crop type.
+This is why the energy impact of existing farms will be weighted more heavily than the yield analysis.
+
+Lettuce is chosen for a few different reasons.
+Firstly it is well suited to aeroponic cultivation \textcolor{Blue}{needs ref}.
+Secondly it grows quickly and consequently is more economically viable as for instance grain crops.
+This makes it one of the most used and researched crops in academic and commercial domains alike.
+Most of the different varieties of lettuce have similar growing conditions, hence no differentiation is made in this work.
+
+Now that we have a system we want to optimize, we need to analyze it more deeply.
+There are two ways this can be accomplished.
+Real plants in experiments and models in simulation.
+For \textit{experiments} we look at available literature.
+Some paper suggests light spectrum has an even bigger impact than illumination magnitude.
+
+For \textit{simulations} we implement a lettuce yield model in Modelica.
+The specifics are discussed later in chapter \ref{chap:simulation}.
+For now only the inputs and outputs are considered.
+
+\textcolor{Blue}{Instert picture of plant model.}
+
+Water and nutrient delivery is mostly a solved problem in moderate climates and specifically \ac{cea} contexts.
+Hence, it does not play a role in the yield calculation.
+The properties of interest in the atmosphere are temperature $u_T$ and CO$_2$ concentration $u_{CO2}$.
+For illumination, \ac{par} $u_par$ is considered.
+As is convention in control settings, inputs are labeled with $u$ and outputs with $y$.
+
+
+
+Plants come in a variety of different forms and varieties.
+Lettuce is chosen because it is the most researched in the field.
+To judge crop yield, which factors are important.
+We present a yield 
+
+To be able to judge which factors influence plant yield, we need
+As @esmaili2020 showed, highest variance for lighting, suggesting most impact to yield.
+
+To minimize energy consumption we have already found above 
+Lighting provides the biggest leverage.
+This was a priority when designing the system.
+Similar to greenhouse cultivation, natural light shall be used.
+But what impact does this have on insulation potential and maximizing yield.
+For insulation there is none.
+
+Let us analyze what elements enable us to maximize yield.
+Yield is produced by the plant, so let 
+For this we will introduce the Yield model for lettuce.
+\textcolor{Blue}{Input block diagram plant model and interactions.}
+
+Water and nutrient delivery is mostly a solved problem.
+This is why it is not taken as an input to the yield model.
+We will deploy an aeroponics system as reasoned in the fundamentals \ref{sub:fund-cea-irr}.
+
+The Energy Analysis \ref{sub:energy-analysis} has shown that illumination in this context takes the highest amount of resources.
+The optimal lighting conditions can be achieved with reasonable complexity increase.
+One reason to optimize the lighting.
+
+For the atmospheric conditions
+For greenhouses, common practice is to elevate levels but keep windows open.
+As this work is in the context of sustainability, it is not considered supplementing CO$_2$.
+
+From the first point we can deduct t
+
+We will define this by the functions the system needs to provide.
+
+So what exactly is it this work tries to achieve and what are relevant properties?
+On a high level
+This work wants to demonstrate the feasibility of a system.
+This work wants to advocate, that greening the future city environment and making food production more resilient and better for the climate can be combined.
+It shall be determined if it makes sense to put plants on buildings.
+We want to take care of a plant.
+
+The plant is a system we can not control directly.
+However, indirectly there exists significant potential to optimize the plant environment.
+
+Define plant system.
+
+Definition System.
+To understand what is needed of a system we first need to define its boundaries.
+And interactions with adjacent systems.
+Context in which it is situated.
+Define scope which we can control.
+
+Yield model highly nonlinear.
+Difficult to analyze.
+Additionally, very slow systems with dead time basically impossible to control via classic control theory \textcolor{Blue}{needs ref}.
+
+
+
+\section{General Concept}
 \label{sec:concept}
 \section{Feasibility}
 \label{sec:feasibility}
