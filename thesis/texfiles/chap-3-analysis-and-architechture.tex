@@ -1,20 +1,114 @@
 %Chapter 3
 \chapter{Theoretical Analysis and Approach}
 \label{chap:analysis-and-arch}
-This chapter shall define the system and its boundaries.
-Define the goal of this work.
-This chapter will uncover the problem we are trying to solve.
-What it is we are trying to achieve.
-Then analysis of state of the art solutions.
+This chapter presents an analysis of the system and literature regarding previous work.
+It will segment different subsystems to separate the controlled system, the engineered system and the environment they are deployed in.
+With the analysis done, we will have a clear understanding of relevant parameters and their interaction.
+From which the main goals of this work are extracted.
+This enables us to then map out a solution proposal.
+It also prepares us for the simulation brought fourth in chapter \ref{chap:simulation}.
+
+% We will first discuss the general concept to unde
+
+% This chapter will give an overview over the state-of-the-art research.
+% It examines the impact of 
+
+% This chapter shall define the system and its boundaries.
+% Define the goal of this work.
+% This chapter will uncover the problem we are trying to solve.
+% What it is we are trying to achieve.
+% Then analysis of state of the art solutions.
 %
 \section{System Analysis}
 \label{sec:system-analysis}
-There exist different definitions for what a system is.
+To plan out a design, we must first know the structure of the problem. %and establish some terminology.
+For this we need to get a tangible definition of the term system.
+% For this we need to get more tangible with the term system.
+% To break down, we must first know what a system is.
+% A system might be defined in different ways.
+% There exist different definitions of a system.
+% There exist different definitions for what a system is.
 For the engineer, it might be classified as a collection of elements with properties of interest @schmitt2019.
 Following this definition, we need to identify the systems' constituents.
 And then analyze what about them is of importance to us.
+So let us first break down the different parts.
+% When we have an overview, we review existing systems.
 % So what are the constituents, and which attributes need to considered?
 % We will define this by the necessary functions which a system like this needs to fulfill.
+
+\subsection{Partitioning}
+\label{sub:partitioning}
+The primary classification is to distinguish between controlled system, engineered system and context.
+The plant is the basis of the \textit{Controlled System}.
+However, it is not possible to manage it directly.
+% It can only be placed into an environment which 
+We need to interface with its environment to affect the plant.
+This environment is further divided into leaf and root surroundings, since they require different conditions.
+Apparent from their different situation in nature.
+
+Going back to the fundamentals of \ac{cea}, the \textit{Engineered System} is composed of three parts.
+Illumination, irrigation and the atmosphere control.
+They cater to the different needs of the plant.
+Atmosphere control and illumination interface with the leaf environment, while irrigation takes care of the root system.
+Together the controlled system and the engineered system make up a 'farm'.
+
+These parts are embedded into a greater \textit{Context} they need to operate in.
+This is where this work diverges from previous concepts.
+In the past, the field has tried to shield the farming context.
+Less exchange to the outside environment means a very high level of consistency and independence.
+As we will see in the analysis of commercial farms (\ref{subsub:prop-ener-commercialfarms}), this approach has not proven successful.
+This is why this work embraces the context it operates in.
+Seeing it not as a hindrance but as an opportunity for synergy.
+As introduced before, this work places the farm on building facades. % we want to green facades.
+Two different domains reveal themselves in this context.
+The building insides and the city environment.
+The \textit{City} and therefore outside world enables a hybrid approach to plant cultivation.
+Part natural resources and part artificial optimization of the environment.
+Similar to how some greenhouses operate already. 
+The interface to the \textit{Building} is novel. %directly leads to insulation
+Potential for insulation naturally comes to mind.
+% The possibility of building insulation emerges naturally by this.
+
+These are the general parts which comprise our concept.
+In the next section we will delve deeper into their interactions.
+They reveal the properties of interest which are still missing for our system definition (\ref{sec:system-analysis}).
+
+\subsection{Properties of Interest}
+\label{sub:prop-of-interest}
+Beginning with the controlled system again, we illuminate the interactions between the plant and its environment.
+The root system is relatively straight forward to manage.
+We need to supply water and nutrients while cleaning out waste products.
+These are modeled as mass flows.
+Water and substances dissolved within it are named $\dot{m}_{H_2O}$ in this work.
+The waste products are captured with $\dot{m}_W$.
+
+Shifting up to the leaf environment, photosynthesis presupposes two mass flows as well.
+Carbon dioxide $\dot{m}_{CO_2}$ moves from the air to the leaves, while oxygen $\dot{m}_{O_2}$ diffuses out to the atmosphere.
+During nighttime these flows are reversed to accommodate cellular respiration.
+This is however not everything happening at this interface.
+Most of the water taken up by the roots is actually not used in photosynthesis at all.
+The plant uses it to transport the nutrients up into the body of the plant.
+This movement is fueled by transpiration.
+About \SI{99}{\percent} of the $H_2O$ is carried out to the environment \textcolor{Blue}{needs ref}.
+
+Next energy in the form of radiation is required.
+The total radiation hitting the leave surface is characterized by $R_T$.
+This incorporates the spectrum and intensity of the light.
+% Depending on the source it is divided into \ac{par} and \ac{ppfd}.
+With this we have captured properties which flow from one system to another in the controlled system.
+% There is however also an informational
+These are however not the only attributes of interest.
+
+As shown later in the \nameref{sub:yield-analysis} there are two other features of the atmosphere we need to take a closer look at.
+These are inputs to the yield model and are not consumed in contrast to the other characteristics.
+These properties are informational in nature.
+They are air temperature $T$ and air speed $v_A$.
+
+Trace substance.
+
+Analyzing the important attributes will give us a clear view which parameters are free design variables.
+And which are constraint by other properties.
+
 This information is extracted from the objectives this work tries to optimize.
 Minimizing energy consumption and maximizing yield.
 % \begin{itemize}
@@ -31,13 +125,39 @@ This helps us to identify the most relevant parameters.
 % And what is the sensitivity of the elements to the yield output?
 % Insulation will be evaluated but is no main design priority.
 
-There are elements consumed by the plant -- co2, water, light energy -- and there are ambient factors like air temperature and velocity.
+\begin{figure}[htbp]
+  \centering
+  \includesvg{img/system-partitioning.drawio}
+  \caption{System partitioning and important flows}
+\end{figure}
+
+% There are elements consumed by the plant -- co2, water, light energy -- and there are ambient factors like air temperature and velocity.
+In this application, we can differentiate between different types of flow.
+\begin{enumerate}
+	\item Mass flows $\dot{m}$ -- continuous lines
+	\item Energy fluxes -- dashed lines
+	\begin{enumerate}
+		\item Pure heat flows $\dot{Q}$
+		\item Radiation $R$
+	\end{enumerate}
+	\item Informational flows -- dotted lines
+	\begin{enumerate}
+		\item Temperature $T$ and air speed $v_A$
+		\item Control signals $S$
+	\end{enumerate}
+	% \item Provide insulation
+	% \item [Auxiliary condition] Maximize yield
+\end{enumerate}
+These informational factors are not considered in the block diagram, s
+
+Behind these lie the technical systems we are trying to 
+
+\textit{Illumination} will be separated into two parts for our inquiry.
+The radiation provided by the 
+
 
 \subsection{Energy Analysis}
 \label{sub:energy-analysis}
-As introduced in the fundamentals \ref{sec:fund-cea}, there are three technical systems to take care of plant growth.
-Irrigation, Illumination and the atmosphere surrounding the plant.
-
 To be able to evaluate the energy impact of the different technical subsystems, we will look at current vertical farming system.
 
 Let us first examine current \ac{cea} and vertical farming approaches to get a better understanding of the solution methods and shortcomings.
@@ -52,6 +172,7 @@ This makes them economically less competitive to traditional agriculture and shi
 Not ideal for Germany, a country which still relies to ... \% on fossil fuels for its energy production \textcolor{blue}{needs ref}.
 
 \subsubsection{Commercial Farms}
+\label{subsub:prop-ener-commercialfarms}
 In recent years, hype surrounding vertical farming has slowed significantly.
 Multiple commercial endeavors declared bankruptcy \textcolor{Blue}{needs ref}.
 \textcolor{Blue}{How do I cite recent developments? Like companies going out of business?}
@@ -64,9 +185,19 @@ The company itself has cited high cost from energy consumption as the primary re
 This does not provide deep insight into the problematic subsystems.
 However, it validates the foundational assumption to minimize energy need.
 
+Aerofarms -- https://en.wikipedia.org/wiki/Controlled-environment\_agriculture
+
 \subsubsection{Research Farms}
+As introduced in the fundamentals \ref{sec:fund-cea}, there are three technical systems to take care of plant growth.
+Irrigation, illumination and the atmosphere surrounding the plant.
+Multiple studies have analyzed the different technical subsystems and their influence on energy need.
+A meta study revealed that ... \% of energy is consumed by lighting systems \textcolor{Blue}{needs ref}.
+This already supposes energy efficient LEDs.
+On second place \ac{hvac} systems consume about ... \%.
+Irrigation is mostly negligible.
 
-
+A Life Cycle Assessment study comes to the conclusion that tighter integration with city infrastructure is indeed needed.
+We will present such a system in \ref{sec:concept}.
 
 \subsection{Yield Analysis}
 \label{sub:yield-analysis}
@@ -85,12 +216,31 @@ Most of the different varieties of lettuce have similar growing conditions, henc
 Now that we have a system we want to optimize, we need to analyze it more deeply.
 There are two ways this can be accomplished.
 Real plants in experiments and models in simulation.
+
+\subsubsection{Experiments}
 For \textit{experiments} we look at available literature.
 Some paper suggests light spectrum has an even bigger impact than illumination magnitude.
+As discussed in the fundamentals we do not consider altering spectrum however.
 
-For \textit{simulations} we implement a lettuce yield model in Modelica.
-The specifics are discussed later in chapter \ref{chap:simulation}.
-For now only the inputs and outputs are considered.
+\subsubsection{Simulations}
+For \textit{simulations} we implement a lettuce yield model proposed by Van Henten @van\_henten1994 in Modelica.
+The model is a system of nonlinear partial differential equations \textcolor{Blue}{check if actually right}.
+A follow-up paper @van\_henten1994b assessed the sensitivity of the input parameters.
+Their analysis showed the highest impact for radiation and CO$_2$ concentration.
+Radiation displayed slightly more effect on growth.
+This is mostly consistent with the experimental data discussed above.
+
+% Following the usual procedure in control theory, it would be best to linearize the system.
+% For linear control systems the methods are far more developed.
+% This is usually done when we have one operating point the system shall be kept in, limiting the linearization error.
+% However, our system shall grow, so we do not have a stable operating point.
+
+% Next plants are quite slow systems in the technical context.
+% Dynamics with a slow response and high dead time are generally not well suited to the methods of control theory \textcolor{Blue}{needs ref}.
+% This is why we will analyze the plant model with a more crude but still effective approach.
+
+% The specifics are discussed later in chapter \ref{chap:simulation}.
+% For now only the inputs and outputs are considered.
 
 \textcolor{Blue}{Instert picture of plant model.}
 
@@ -159,6 +309,9 @@ Define scope which we can control.
 Yield model highly nonlinear.
 Difficult to analyze.
 Additionally, very slow systems with dead time basically impossible to control via classic control theory \textcolor{Blue}{needs ref}.
+
+\subsection{Conclusions from the analysis}
+\label{sub:conc-analysis}
 
 
 
