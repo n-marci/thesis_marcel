@@ -5,7 +5,7 @@ This chapter presents an analysis of the system and literature regarding previou
 It will segment different subsystems to separate the controlled system, the engineered system and the environment they are deployed in.
 With the analysis done, we will have a clear understanding of relevant parameters and their interaction.
 From which the main goals of this work are extracted.
-This enables us to then map out a solution proposal.
+This enables us to map out a solution proposal.
 It also prepares us for the simulation brought fourth in chapter \ref{chap:simulation}.
 
 % We will first discuss the general concept to unde
@@ -21,17 +21,18 @@ It also prepares us for the simulation brought fourth in chapter \ref{chap:simul
 %
 \section{System Analysis}
 \label{sec:system-analysis}
-To plan out a design, we must first know the structure of the problem. %and establish some terminology.
+To design a solution, we must first know the structure of the problem. %and establish some terminology.
 For this we need to get a tangible definition of the term system.
 % For this we need to get more tangible with the term system.
 % To break down, we must first know what a system is.
 % A system might be defined in different ways.
 % There exist different definitions of a system.
 % There exist different definitions for what a system is.
-For the engineer, it might be classified as a collection of elements with properties of interest @schmitt2019.
+For the engineer, it can be described as a collection of elements with properties of interest @schmitt2019.
 Following this definition, we need to identify the systems' constituents.
-And then analyze what about them is of importance to us.
-So let us first break down the different parts.
+And then analyze what about them is important to us.
+% So let us first break down the different parts.
+The next section will break down the different parts.
 % When we have an overview, we review existing systems.
 % So what are the constituents, and which attributes need to considered?
 % We will define this by the necessary functions which a system like this needs to fulfill.
@@ -42,7 +43,7 @@ The primary classification is to distinguish between controlled system, engineer
 The plant is the basis of the \textit{Controlled System}.
 However, it is not possible to manage it directly.
 % It can only be placed into an environment which 
-We need to interface with its environment to affect the plant.
+We need to interface with its environment to affect our green companions.
 This environment is further divided into leaf and root surroundings, since they require different conditions.
 Apparent from their different situation in nature.
 
@@ -50,23 +51,28 @@ Going back to the fundamentals of \ac{cea}, the \textit{Engineered System} is co
 Illumination, irrigation and the atmosphere control.
 They cater to the different needs of the plant.
 Atmosphere control and illumination interface with the leaf environment, while irrigation takes care of the root system.
-Together the controlled system and the engineered system make up a 'farm'.
+Together the controlled system and the engineered system make up, what we will call a 'farm'.
 
 These parts are embedded into a greater \textit{Context} they need to operate in.
 This is where this work diverges from previous concepts.
-In the past, the field has tried to shield the farming context.
-Less exchange to the outside environment means a very high level of consistency and independence.
-As we will see in the analysis of commercial farms (\ref{subsub:prop-ener-commercialfarms}), this approach has not proven successful.
+In the past, the field has tried to shield the farming context from outside influences.
+Less exchange to the environment means a very high level of consistency and independence.
+As we will see in the analysis of commercial farms (\ref{subsub:prop-ener-commercialfarms}), this approach has not proven successful though.
 This is why this work embraces the context it operates in.
 Seeing it not as a hindrance but as an opportunity for synergy.
 As introduced before, this work places the farm on building facades. % we want to green facades.
 Two different domains reveal themselves in this context.
 The building insides and the city environment.
 The \textit{City} and therefore outside world enables a hybrid approach to plant cultivation.
-Part natural resources and part artificial optimization of the environment.
-Similar to how some greenhouses operate already. 
+Part utilization of natural resources and part artificial optimization of the environment.
+Similar to how greenhouses operate already. 
 The interface to the \textit{Building} is novel. %directly leads to insulation
-Potential for insulation naturally comes to mind.
+Potential for insulation naturally comes to mind, which provides a big benefit not exhausted in this work.
+We will only evaluate insulation performance.
+Energy savings brought about by this choice are not considered in the energy balance built up in later chapters.
+ % but not yet add it to the energy savings achieved by our design.
+% Only skimmed by evaluating insulation performance but not exhaustivily discussed.
+% The energy savings are not even considered.
 % The possibility of building insulation emerges naturally by this.
 
 These are the general parts which comprise our concept.
@@ -75,24 +81,32 @@ They reveal the properties of interest which are still missing for our system de
 
 \subsection{Properties of Interest}
 \label{sub:prop-of-interest}
+
+\subsubsection{Controlled System}
+\begin{wrapfigure}{R}{0.4\textwidth}
+	\caption{The plant and its immediate environment.}
+	\label{wfig:controlled-system}
+	\includegraphics[width=0.4\textwidth]{img/controlled-system.pdf}
+\end{wrapfigure} 
+
 Beginning with the controlled system again, we illuminate the interactions between the plant and its environment.
 The root system is relatively straight forward to manage.
 We need to supply water and nutrients while cleaning out waste products.
 These are modeled as mass flows.
-Water and substances dissolved within it are named $\dot{m}_{H_2O}$ in this work.
-The waste products are captured with $\dot{m}_W$.
+Water and substances dissolved within it are named $\dot{m}_{\text{H}_2\text{O}}$ in this work.
+The waste products are captured with $\dot{m}_\text{W}$.
 
 Shifting up to the leaf environment, photosynthesis presupposes two mass flows as well.
-Carbon dioxide $\dot{m}_{CO_2}$ moves from the air to the leaves, while oxygen $\dot{m}_{O_2}$ diffuses out to the atmosphere.
+Carbon dioxide $\dot{m}_{\text{CO}_2}$ moves from the air to the leaves, while oxygen $\dot{m}_{\text{O}_2}$ diffuses out to the atmosphere.
 During nighttime these flows are reversed to accommodate cellular respiration.
 This is however not everything happening at this interface.
 Most of the water taken up by the roots is actually not used in photosynthesis at all.
-The plant uses it to transport the nutrients up into the body of the plant.
+The plant uses it to transport the nutrients up into its body.
 This movement is fueled by transpiration.
-About \SI{99}{\percent} of the $H_2O$ is carried out to the environment \textcolor{Blue}{needs ref}.
+About \SI{99}{\percent} of the $\text{H}_2\text{O}$ is carried out to the environment this way \textcolor{Blue}{needs ref}.
 
 Next energy in the form of radiation is required.
-The total radiation hitting the leave surface is characterized by $R_T$.
+The total radiation hitting the leave surface is characterized by $R_\text{T}$.
 This incorporates the spectrum and intensity of the light.
 % Depending on the source it is divided into \ac{par} and \ac{ppfd}.
 With this we have captured properties which flow from one system to another in the controlled system.
@@ -102,7 +116,64 @@ These are however not the only attributes of interest.
 As shown later in the \nameref{sub:yield-analysis} there are two other features of the atmosphere we need to take a closer look at.
 These are inputs to the yield model and are not consumed in contrast to the other characteristics.
 These properties are informational in nature.
-They are air temperature $T$ and air speed $v_A$.
+They are air temperature $T$ and air speed $v_\text{A}$.
+A block diagram of the plant and its immediate environment can be seen in figure \ref{wfig:controlled-system}.
+Mass flows are shown as solid lines, energy as dashed and data flow dotted.
+Now that we looked at the target system, the next section will talk about its supervision.
+
+\paragraph{}
+\vspace*{-\parskip}
+
+\subsubsection{Engineered System}
+% The first part we can influence, is
+\begin{wrapfigure}{R}{0.6\textwidth}
+	\caption{The technical system and its influences.}
+	\label{wfig:engineered-system}
+	\includegraphics[width=0.6\textwidth]{img/engineered-system.pdf}
+\end{wrapfigure} 
+
+Following the partitioning, the first technical subsystem is illumination.
+At first thought it seems like we can interface with the plant leaf directly here.
+However, we only supply a certain \ac{ppfd} to the environment.
+The plant is free to use any amount of it and will actually close its stomata -- the pores enabling gas exchange -- in light stress situations \textcolor{Blue}{needs ref}.
+Effectively caping the light it uses.
+And so the artificial radiation $R_\text{A}$ flows from the light source to the leaf environment.
+
+Next let us look at atmosphere control.
+The mass flows $\dot{m}_{\text{H}_2\text{O}}$, $\dot{m}_{\text{CO}_2}$ and $\dot{m}_{\text{O}_2}$ introduced before can all be controlled discretely.
+Water in the form of humidity is an important factor to control \ac{vpd} as introduced in the \nameref{sec:fund-cea}.
+And elevated levels of carbon dioxide promote mass accumulation and therefore higher yields.
+Oxygen is nonessential in our inquiry and is only distinguished to keep an equilibrium of elements in the leaf environment.
+% Oxygen is not of big interest and is only distinguished 
+% shown separately because of the importance of carbon dioxide and water.
+For the control to function there needs to be some form of feedback.
+Sensors to capture the relevant properties temperature, air speed and the mass concentrations are placed in the air volume.
+They are aggregated with the atmosphere control signal $S_\text{A}$.
+
+For irrigation, we again describe the water flow with any dissolved materials as $\dot{m}_{\text{H}_2\text{O}}$.
+\ac{vpd} of the root control volume is fed back through the irrigation control signal $S_\text{I}$.
+With this we have gathered an overview of the attributes needed to govern the controlled system.
+Figure \ref{wfig:engineered-system} shows the influences the technical system takes on the controlled system.
+Subsequently, we will highlight the context of our system.
+
+% Now we introduce the part we as an engineer have control over.
+% On cloudy days, supplemental lighting.
+% This artificial radiation is called $R_\text{A}$.
+% Just as the natural radiation it captures spectrum and intensity.
+
+% \paragraph{}
+% \vspace*{-\parskip}
+
+\subsubsection{Context}
+As we did before we divide the context into two domains.
+First we examine the city environment.
+Both the 
+
+Shading is not considered in this work to preserve visibility from the building to the outside.
+And so natural radiation $R_\text{N}$ shines unimpeded onto the plant.
+Considering the importance of illumination to the growth of the plant however, this might need be revisited in future works.
+
+The weight of the different properties are discussed in the next chapter.
 
 Trace substance.
 
@@ -127,27 +198,27 @@ This helps us to identify the most relevant parameters.
 
 \begin{figure}[htbp]
   \centering
-  \includesvg{img/system-partitioning.drawio}
+  \includegraphics[width=\textwidth]{img/context.pdf}
   \caption{System partitioning and important flows}
 \end{figure}
 
 % There are elements consumed by the plant -- co2, water, light energy -- and there are ambient factors like air temperature and velocity.
 In this application, we can differentiate between different types of flow.
-\begin{enumerate}
-	\item Mass flows $\dot{m}$ -- continuous lines
-	\item Energy fluxes -- dashed lines
-	\begin{enumerate}
-		\item Pure heat flows $\dot{Q}$
-		\item Radiation $R$
-	\end{enumerate}
-	\item Informational flows -- dotted lines
-	\begin{enumerate}
-		\item Temperature $T$ and air speed $v_A$
-		\item Control signals $S$
-	\end{enumerate}
-	% \item Provide insulation
-	% \item [Auxiliary condition] Maximize yield
-\end{enumerate}
+% \begin{enumerate}
+% 	\item Mass flows $\dot{m}$ -- continuous lines
+% 	\item Energy fluxes -- dashed lines
+% 	\begin{enumerate}
+% 		\item Pure heat flows $\dot{Q}$
+% 		\item Radiation $R$
+% 	\end{enumerate}
+% 	\item Informational flows -- dotted lines
+% 	\begin{enumerate}
+% 		\item Temperature $T$ and air speed $v_A$
+% 		\item Control signals $S$
+% 	\end{enumerate}
+% 	% \item Provide insulation
+% 	% \item [Auxiliary condition] Maximize yield
+% \end{enumerate}
 These informational factors are not considered in the block diagram, s
 
 Behind these lie the technical systems we are trying to 
