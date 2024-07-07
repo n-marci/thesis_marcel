@@ -2,15 +2,13 @@
 \chapter{Fundamentals}
 \label{chap:fundamentals}
 
-To , we need to illuminate a few different systems.
-$\dot{m}$
-
 \section{Thermodynamics}
 \textcolor{Blue}{How do I cite best here? Whole section is based on} @cengel2003.
-This work wants to make statements about plant growth and insulation potential.
-Temperature information is needed to achieve that.
+This work wants to model plant growth and insulation potential.
+These statements require temperature information.
+% Naturally we need temperature information to achieve that.
 Therefore, this section introduces some fundamentals from thermodynamics.
-They will make it possible to simulate heat flows and gather this data.
+They will make it possible to simulate heat flows and gather necessary data.
 
 % As this work wants to judge plant growth, temper
 
@@ -31,22 +29,26 @@ Total heat transferred during a process is denoted by $Q$ and the rate at which 
 This heat transfer rate $\dot{Q}$ is what we will look at next.
 
 \subsection{Heat Transfer}
+\label{sub:heat-transfer}
 Heat transfer can fundamentally occur in three different forms.
 Conduction, Convection and Radiation.
 
-\textit{Conduction} refers to heat moving through a material.
+\paragraph{Conduction} This refers to heat moving through a material.
 It is characterized by the heat conductivity $k$ (\si{\W\per\m\per\K}) specific to the substance in question and can be modeled by Fourier's law
 $$
 \dot{Q}_{cond} = -k \frac{A}{L} \Delta T
 $$
 where $A$ (\si{\square\m}) is the area through which the conduction takes place, $L$ (\si{\m}) is the distance and $\Delta T$ (\si{\K}) is the temperature difference.
-\textit{Convection} is heat transferred on the boundary between a solid and a fluid.
+
+\paragraph{Convection} This is heat transferred on the boundary between a solid and a fluid.
 The characteristic value for this interaction is the convection heat transfer coefficient $h$ (\si{\W\per\square\m\per\K}) while the mathematical description is given by Newton's law of cooling
 $$
 \dot{Q}_{conv} = h A \Delta T
 $$
 with $A$ being again the area, and $\Delta T$ the temperature difference.
-\textit{Radiation} describes heat transfer via electromagnetic waves.
+
+\paragraph{Radiation} This describes heat transfer via electromagnetic waves.
+This property can be emitted or absorbed.
 Any material possessing a temperature greater absolute zero will emit some heat to its surroundings.
 For a black body -- an idealized concept absorbing all incident radiation -- this heat flux density is given by the Stefan-Boltzmann Law.
 For real materials the emissivity $\epsilon$ (-) and the objects' surface area $A$ are taken into account to get
@@ -54,21 +56,21 @@ $$
 \dot{Q}_{rad} = \epsilon \sigma A (T^4 - T_{surr}^4)
 $$
 where $T$ (\si{\K}) is the material temperature, $\sigma$ (\si{\W\per\square\m\per\K\tothe{4}}) is the Stefan-Boltzmann constant and $T_{surr}$ (\si{\K}) describes the temperature of an idealized sphere infinitely far from the object.
-Looking at incoming radiation, we have the characteristic value of absorptivity $\alpha$ (-).
+When taking about incoming radiation, we have the characteristic value of absorptivity $\alpha$ (-).
 This is combined with the incident radiation $\dot{Q}_{inci}$ (\si{\W}) to obtain 
 $$
 \dot{Q}_{abso} = \alpha \dot{Q}_{\text{inci}} 
 $$
 for captured heat flux by a material.
 
-Conveniently these physical relations are already modeled in the Modelica Standard Library and further built upon with the Buildings Library.
-\textcolor{Blue}{Should I introduce here already the modelica models which implement this?}
+% Conveniently these physical relations are already modeled in the Modelica Standard Library and further built upon with the Buildings Library.
+% \textcolor{Blue}{Should I introduce here already the modelica models which implement this?}
 
 
 
 \subsection{Other relevant thermodynamic properties}
 \label{sub:ther-props}
-Explain Heat Capacity.\\
+Heat Capacity.\\
 Heat transfer via mass transfer.\\
 \textcolor{Blue}{Shall I put references here for what the fundamentals are needed? Like latent heat to determine evaporation cooling, mass transfer for ventilating?}
 
@@ -78,47 +80,92 @@ Heat transfer via mass transfer.\\
 
 \section{Agricultural and CEA Basics}
 \label{sec:fund-cea}
-To understand \ac{cea}, we need to understand photosynthesis.
+As the name suggests, \acl{cea} is about controlling the environment of a crop.
+So what needs to be managed to provide a habitat for these green organisms?
+% So which parts of the normal habitat need to be managed?
+This can most easily be answered by abstracting the plant down to the process of photosynthesis.
+$$
+6 \text{CO}_2 + 6 \text{H}_2\text{O} \rightarrow \text{C}_6\text{H}_{12}\text{O}_6 + 6 \text{O}_2
+$$
+The output we usually care about when growing crops is glucose $\text{C}_6\text{H}_{12}\text{O}_6$ as well as more complex carbohydrates built up from this constituent.
+After water, these make up the bulk of the mass of the plant.
+This is the reason to optimize this process.
+As we can see, there are two chemical inputs necessary.
+Water is taken up by the roots, so \textit{Irrigation} is required.
+Carbon Dioxide diffuses into the leaves from the surrounding air and so the plant benefits from a controlled \textit{Atmosphere}.
+Additionally, there is another input not directly apparent in the equation.
+% Not directly apparent in the equation, there is an additional input.
+Since photosynthesis is an endothermic reaction, energy needs to be supplied.
+This is done with \textit{Illumination}.
+These are the three domains on which technological solutions hinge to provide optimal control.
 
-This will help us to understand what technology is needed in a modern agricultural system.
-And how this influences the biological system we are trying to take care of.
-This is important as we are trying to gauge the yield output of the crop later.
+% There can be more nuance when diseases and plant health come into play.
 
-In the center of \ac{cea} stands the plant.
-The environment is crafted to provide optimal conditions.
+% To understand \ac{cea}, we need to understand photosynthesis.
+
+% This will help us to understand what technology is needed in a modern agricultural system.
+% And how this influences the biological system we are trying to take care of.
+% This is important as we are trying to gauge the yield output of the crop later.
+
+% In the center of \ac{cea} stands the plant.
+% The environment is crafted to provide optimal conditions.
 
 \subsection{Illumination}
-For illumination a few factors are of importance.
-Instant irradiance and time dependent factors like dli and dark period.
+For illumination two foundational notions have an influence on the plant.
+Instant irradiance and the characteristics on how this instantaneous value is supplied over time.
+% These are discussed in the following section.
 
-For irradiance there are two important factors which define instant irradiance.
-Spectrum and irradiance power.
-\subsubsection{Irradiance on a tilted surface}
+% \textit{Instant Irradiance} can be further divided into light spectrum and intensity.
+% The aggregation of this instantaneous value is what is captured by time dependent factors.
+% Classify illumination broadly into two 
+% For illumination a few factors are of importance.
+% Instant irradiance and time dependent factors like dli and dark period.
 
-\subsubsection{Solar spectrum and photosynthesis}
+% For irradiance there are two important factors which define instant irradiance.
+% Spectrum and irradiance power.
+\subsubsection{Instant Irradiance}
+The instantaneous radiation can further be divided into light spectrum and intensity for our application.
+% Also natural and artificial sources are examined separately.
+The two concepts \ac{par} and \ac{ppfd} quantify these qualities for natural and artificial sources respectively.
+They both carry the same unit (\si{\umol\per\square\m\per\s}) and except for their origin, can be treated the same.
+As their name implies these values characterize the radiation which can be used in photosynthesis.
+% For both quantifying spectrum and intensity we will introduce \ac{par} and \ac{ppfd}.
+% There are two determinants influencing the effect of instantaneous radiation on plant life.
+% Light intensity and spectrum.
+\paragraph{Light Spectrum}
+% \subsubsection{Irradiance on a tilted surface}
+% \subsubsection{Solar spectrum and photosynthesis}
+Plants use light in the spectrum from 400 nm to 700 nm \textcolor{Blue}{needs ref}.
+This is only a portion of the natural solar spectrum which is hitting earth.
+Luckily a simple conversion factor exists to convert the suns' radiation usually provided in \si{\W\per\square\m} to \ac{par} @reis2020.
+% For the \textit{natural} solar radiation in the context of plant growth, the concept of \ac{par} is most often used.
+% This describes the solar radiation which lies inside the aforementioned range for photosynthesis and can be calculated with a simple conversion factor @reis2020.
+
+For artificial radiation you are able to choose a light source with specific spectrum characteristics.
+This used to be more constrained in the past, but the proliferation of \acsp{led} allows for fine-grained adjustments of light quality.
+% Sources with all their spectrum inside the photosynthesis range are possible.
+Sources catering their spectrum specifically to the photosynthetic range are widely available.
+And so we can take the light output right as \ac{ppfd}.
+
+\paragraph{Light Intensity}
+Natural light and how to calculate the intensity on a tilted surface.
+
+% To convert the irradiance on a tilted surface we calculated before to the \ac{par}, there exists a simple conversion factor @reis2020.
+% Meanwhile, when using \textit{artificial} lighting, \ac{ppfd} is used to describe the relevant radiation.
+% \ac{par} and \ac{ppfd} quantify \textit{light spectrum} and \textit{light intensity} into one value.
+
+\subsubsection{Time Aggregation}
 When assessing the optimal lighting conditions for plant growth, several factors need to be illuminated.
 Lol illuminated.
 Light spectrum, Instantenous light intensity, Cumulative light amount and Photoperiod
 
-For quantifying \textit{spectrum} and \textit{instantenous intensity} we will introduce \ac{par} and \ac{ppfd}.
-As discussed before we want to 
-How do we quantify the solar irradiance 
-Plants use solar radiation in the spectrum from 400 nm to 700 nm \textcolor{Blue}{needs ref} for photosynthesis.
-This is only a portion of the actual solar radiation which is hitting earth.
-For the \textit{natural} solar radiation in the context of plant growth, the concept of \ac{par} is most often used.
-This describes the solar radiation which lies inside the aforementioned range for photosynthesis and can be calculated with a simple conversion factor @reis2020.
-% To convert the irradiance on a tilted surface we calculated before to the \ac{par}, there exists a simple conversion factor @reis2020.
-Meanwhile when using \textit{artificial} lighting, \ac{ppfd} is used to describe the relevant radiation.
-\ac{par} and \ac{ppfd} quantify \textit{light spectrum} and \textit{instantenous intensity}.
-They both carry the same unit and except for their natural or artificial origin, can be treated the same.
-
-To quantify the \textit{cumulative light amount} and \textit{photoperiod} for a whole day, we simply accumulate \ac{par} and \ac{ppfd} over one day.
+To quantify the \textit{cumulative light amount} and \textit{photoperiod} for a whole day, we simply accumulate \ac{par} and \ac{ppfd} over this interval.
 This is called \ac{dli}.
 
 For artificial lighting, the spectrum will lie inside the photosynthetically active spectrum, since they are made specifically for plant cultivation.
 And so the ppfd is taken directly.
 Further optimization can be done by adjusting the red, green, blue ratios.
-This is not taken into account however, since we will illuminate outside areas.
+This is not taken into account however, since we will illuminate human inhabited areas.
 Therefore, white light is chosen to not disturb the inhabitants of the building with irritating light colors.
 
 LEDs are chosen because of their high efficiency and possibility to adjust the light spectrum granuarly.
@@ -132,11 +179,11 @@ Typical values for solar radiation and artificial illumination.
 Water and Nutrients in \ac{cea} are mixed and delivered to the plants directly by a process known as fertigation.
 For the most part the roots are taken care of directly, without the use of any soil.
 Substrates such as rockwool or perlite provide alternatives but are no necessity.
-This soilless method of cultivation is referred to as \textit{hydroponics}.
+This soilless method of cultivation is referred to as \textit{Hydroponics}.
 Hydroponic systems use less water and enable greater plant densities than traditional agriculture.
 They offer high consistency and a tight control on water and nutrient delivery.
 
-Multiple different techniques like \ac{nft}, deep water culture and \textit{aeroponics} have developed over the years for differing use cases.
+Multiple different techniques like \ac{nft}, deep water culture and \textit{Aeroponics} have developed over the years for differing use cases.
 Aeroponic systems are special, in that the roots of the plants are not submerged in water.
 Instead, they are surrounded entirely by air and either sprayed or misted with fog.
 % This reduces water usage even further by 65\% \textcolor{Blue}{https://en.wikipedia.org/wiki/Hydroponics#cite_note-:1-48}.
@@ -156,6 +203,8 @@ Therefore, this technique is not industry standard and generally has tighter req
 
 For this work we will employ an aeroponic system because of the lightweight nature and high flexibility.
 The strong requirement for control will be alleviated by the use of separate units -- the plant panels -- compartmentalizing any damage potential.
+
+\textcolor{Blue}{Explain \ac{ec} and pH.} 
 
 % Aeroponics less water, less nutrient use.
 
@@ -220,4 +269,8 @@ Our concept will not implement carbon dioxide enrichment, since the farm air wil
 % This is not implemented in our concept, since the farm air will interface with humans in the building.
 \ac{cea} facilities also oftentimes spend significant resources to condition the air with \ac{hvac} systems.
 Following the theme of minimizing energy consumption, passive air cooling is chosen.
+
+Other notable qualities of the atmosphere include air temperature, air speed and humidity.
+These foster mostly the health of the plant and will not have a significant impact on photosynthesis.
+Temperature and humidity in this field is usually described as the single value of \ac{vpd}.
 
