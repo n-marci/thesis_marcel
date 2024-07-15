@@ -25,6 +25,7 @@
 
           micromamba create -n calcs jupyter --file requirements.txt -c conda-forge
           micromamba install --yes -f requirements.txt
+          # micromamba update --yes -f requirements.txt
 
           micromamba activate calcs
           # micromamba update --yes -f environment.yml

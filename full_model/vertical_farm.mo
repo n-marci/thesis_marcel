@@ -32,10 +32,6 @@ package vertical_farm
       Placement(transformation(origin = {70, -78}, extent = {{-10, -10}, {10, 10}})));
     Buildings.HeatTransfer.Conduction.MultiLayer building_facade_conduction(A = 523.2, layers = facade_material) annotation(
       Placement(transformation(origin = {70, -50}, extent = {{10, -10}, {-10, 10}}, rotation = -0)));
-    Modelica.Blocks.Math.Gain gaiWin(k = 1236.9*0.03) annotation(
-      Placement(transformation(origin = {-110, 80}, extent = {{-10, -10}, {10, 10}})));
-    Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo annotation(
-      Placement(transformation(origin = {-70, 80}, extent = {{-10, -10}, {10, 10}})));
     Buildings.HeatTransfer.Sources.PrescribedTemperature preTem1 annotation(
       Placement(transformation(origin = {-196, -34}, extent = {{-10, -10}, {10, 10}})));
     Buildings.BoundaryConditions.WeatherData.Bus weaBus annotation(
@@ -115,6 +111,14 @@ package vertical_farm
       Placement(transformation(origin = {-330, 122}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor farm_temperature_sensor1 annotation(
       Placement(transformation(origin = {-290, 138}, extent = {{-10, -10}, {10, 10}})));
+  Buildings.Controls.OBC.CDL.Reals.MovingAverage farm_temp_average(delta = 86400)  annotation(
+      Placement(transformation(origin = {-170, 170}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Thermal.HeatTransfer.Celsius.FromKelvin fromKelvin annotation(
+      Placement(transformation(origin = {-210, 170}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Math.Gain gaiWin(k = 1236.9*0.2*0.8) annotation(
+      Placement(transformation(origin = {-110, 80}, extent = {{-10, -10}, {10, 10}})));
+  Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo annotation(
+      Placement(transformation(origin = {-70, 80}, extent = {{-10, -10}, {10, 10}})));
   equation
     connect(envelope_glass_outside_convection.solid, envelope_glass_conduction.port_a) annotation(
       Line(points = {{-110, -10}, {-100, -10}}, color = {191, 0, 0}));
@@ -150,10 +154,6 @@ package vertical_farm
       Line(points = {{50, -50}, {60, -50}}, color = {191, 0, 0}));
     connect(building_facade_conduction.port_a, building_facade_building_convection.solid) annotation(
       Line(points = {{80, -50}, {90, -50}}, color = {191, 0, 0}));
-    connect(gaiWin.y, preHeaFlo.Q_flow) annotation(
-      Line(points = {{-99, 80}, {-81, 80}}, color = {0, 0, 127}));
-    connect(preHeaFlo.port, farm_air.heatPort) annotation(
-      Line(points = {{-60, 80}, {-10, 80}, {-10, -20}}, color = {191, 0, 0}));
     connect(preTem1.port, envelope_glass_outside_convection.fluid) annotation(
       Line(points = {{-186, -34}, {-160, -34}, {-160, -10}, {-130, -10}}, color = {191, 0, 0}));
     connect(weaBus.TDryBul, preTem1.T) annotation(
@@ -265,12 +265,20 @@ package vertical_farm
       Line(points = {{-380, 112}, {-386, 112}, {-386, -30}, {-332, -30}, {-332, -72}, {-360, -72}}, color = {255, 204, 51}, thickness = 0.5));
     connect(HDirRoo11.weaBus, weaDat1.weaBus) annotation(
       Line(points = {{-380, 132}, {-386, 132}, {-386, -30}, {-332, -30}, {-332, -72}, {-360, -72}}, color = {255, 204, 51}, thickness = 0.5));
-  connect(farm_temperature_sensor1.T, plant_yield1.air_temperature) annotation(
+    connect(farm_temperature_sensor1.T, plant_yield1.air_temperature) annotation(
       Line(points = {{-278, 138}, {-262, 138}}, color = {0, 0, 127}));
-  connect(farm_temperature_sensor1.port, farm_air.heatPort) annotation(
+    connect(farm_temperature_sensor1.port, farm_air.heatPort) annotation(
       Line(points = {{-300, 138}, {-308, 138}, {-308, 202}, {-10, 202}, {-10, -20}}, color = {191, 0, 0}));
-  connect(gaiWin.u, add1.y) annotation(
-      Line(points = {{-122, 80}, {-222, 80}, {-222, 108}, {-302, 108}, {-302, 122}, {-318, 122}}, color = {0, 0, 127}));
+    connect(fromKelvin.Celsius, farm_temp_average.u) annotation(
+      Line(points = {{-198, 170}, {-182, 170}}, color = {0, 0, 127}));
+    connect(farm_temperature_sensor1.T, fromKelvin.Kelvin) annotation(
+      Line(points = {{-278, 138}, {-276, 138}, {-276, 146}, {-222, 146}, {-222, 170}}, color = {0, 0, 127}));
+    connect(gaiWin.y, preHeaFlo.Q_flow) annotation(
+      Line(points = {{-99, 80}, {-81, 80}}, color = {0, 0, 127}));
+    connect(preHeaFlo.port, farm_air.heatPort) annotation(
+      Line(points = {{-60, 80}, {-10, 80}, {-10, -20}}, color = {191, 0, 0}));
+    connect(HDirRoo11.H, gaiWin.u) annotation(
+      Line(points = {{-358, 132}, {-352, 132}, {-352, 142}, {-312, 142}, {-312, 102}, {-154, 102}, {-154, 80}, {-122, 80}}, color = {0, 0, 127}));
     annotation(
       Diagram(coordinateSystem(extent = {{-440, 280}, {180, -360}}), graphics = {Rectangle(origin = {-90, 35}, extent = {{-50, 63}, {50, -63}}), Rectangle(origin = {70, 59}, extent = {{-48, 35}, {48, -35}}), Rectangle(origin = {70, -79}, fillColor = {153, 193, 241}, extent = {{48, -47}, {-48, 47}})}),
       experiment(StartTime = 0, StopTime = 3.07584e+07, Tolerance = 1e-06, Interval = 307.584));
@@ -310,14 +318,27 @@ package vertical_farm
   end testing3;
 
   model testing4
-    parameter Real rho = 0.2 "Ground reflectance";
-    Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam = Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")) annotation(
-      Placement(transformation(extent = {{-60, 20}, {-40, 40}})));
-    Buildings.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirRoo(azi = 0.78539816339745, til = Buildings.Types.Tilt.Ceiling) annotation(
-      Placement(transformation(extent = {{20, 20}, {40, 40}})));
+  Buildings.HeatTransfer.Conduction.MultiLayer heaCon(A = 1, layers(nLay = 2, material = {glass, concrete}))  annotation(
+      Placement(transformation(origin = {8, 0}, extent = {{-10, -10}, {10, 10}})));
+  parameter Buildings.HeatTransfer.Data.Solids.Glass glass(x = 0.1)  annotation(
+      Placement(transformation(origin = {-10, -50}, extent = {{-10, -10}, {10, 10}})));
+  parameter Buildings.HeatTransfer.Data.Solids.Concrete concrete(x = 0.1)  annotation(
+      Placement(transformation(origin = {20, -50}, extent = {{-10, -10}, {10, 10}})));
+  Buildings.HeatTransfer.Sources.FixedTemperature inside(T = 293.15)  annotation(
+      Placement(transformation(origin = {58, 0}, extent = {{10, -10}, {-10, 10}}, rotation = -0)));
+  Buildings.HeatTransfer.Sources.FixedTemperature outside(T = 283.15)  annotation(
+      Placement(transformation(origin = {-62, 0}, extent = {{-10, -10}, {10, 10}})));
+  Buildings.HeatTransfer.Convection.Interior con(A = 1, conMod = Buildings.HeatTransfer.Types.InteriorConvection.Temperature, til = 1.5707963267948966)  annotation(
+      Placement(transformation(origin = {-26, 0}, extent = {{10, -10}, {-10, 10}}, rotation = -0)));
+  greenshell.building.facade facade1 annotation(
+      Placement(transformation(origin = {0, 54}, extent = {{-10, -10}, {10, 10}})));
   equation
-    connect(weaDat.weaBus, HDirRoo.weaBus) annotation(
-      Line(points = {{-40, 30}, {20, 30}}, color = {255, 204, 51}, thickness = 0.5));
+  connect(inside.port, heaCon.port_b) annotation(
+      Line(points = {{48, 0}, {18, 0}}, color = {191, 0, 0}));
+  connect(heaCon.port_a, con.solid) annotation(
+      Line(points = {{-2, 0}, {-16, 0}}, color = {191, 0, 0}));
+  connect(con.fluid, outside.port) annotation(
+      Line(points = {{-36, 0}, {-52, 0}}, color = {191, 0, 0}));
   end testing4;
 
   model led "model for the power consumption and heat generation of an led module"
@@ -607,10 +628,10 @@ package vertical_farm
         Placement(transformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}})));
   
   equation
-  if (weaBus.HGloHor == 0) then
-      y = 0;
-    else
+  if (weaBus.HGloHor > 0) then
       y = 4000;
+    else
+      y = 0;
     end if;
   end pump;
 

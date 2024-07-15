@@ -1,0 +1,133 @@
+%% Creator: Inkscape 1.3.2 (091e20ef0f, 2023-11-25), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'leaf-env_svg-tex.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{228.80388635bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.8897244)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{leaf-env_svg-tex.pdf}}%
+    \put(-1.38365813,1.1484594){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Shading\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{leaf-env_svg-tex.pdf}}%
+    \put(0.53701998,0.42328937){\color[rgb]{1,1,1}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}V=volume\end{tabular}}}}}%
+    \put(0.28807692,0.38265673){\color[rgb]{0,0,1}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}vol\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{leaf-env_svg-tex.pdf}}%
+    \put(0.28807692,0.38265673){\color[rgb]{0,0,1}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}vol\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{leaf-env_svg-tex.pdf}}%
+    \put(0.54634938,-1.9965419){\color[rgb]{0,0,0.49803922}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}h=…\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{leaf-env_svg-tex.pdf}}%
+    \put(0.38754689,-2.0716294){\color[rgb]{0,0,0.49803922}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}farm_a…\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{leaf-env_svg-tex.pdf}}%
+    \put(0.54634938,-1.09884234){\color[rgb]{0,0,0.49803922}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}h=…\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{leaf-env_svg-tex.pdf}}%
+    \put(0.38754689,-1.17392547){\color[rgb]{0,0,0.49803922}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}farm_a…\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{leaf-env_svg-tex.pdf}}%
+    \put(-0.60136404,-2.1242094){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}window_bottom\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{leaf-env_svg-tex.pdf}}%
+    \put(-0.5581366,-0.62803618){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}window_top\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{leaf-env_svg-tex.pdf}}%
+    \put(-1.4688154,-1.22206149){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}outside_air\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{leaf-env_svg-tex.pdf}}%
+    \put(-2.42052982,0.61731812){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}weaBus\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{leaf-env_svg-tex.pdf}}%
+    \put(-0.49906588,-1.22203526){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}conPID\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{leaf-env_svg-tex.pdf}}%
+    \put(-0.45392601,-1.47939996){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{leaf-env_svg-tex.pdf}}%
+    \put(-0.59401495,-2.08352169){\color[rgb]{0,0,1}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}temperature_setpoint\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{leaf-env_svg-tex.pdf}}%
+    \put(-0.20063848,-2.03524058){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}k=273.15 + 24\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{leaf-env_svg-tex.pdf}}%
+    \put(0.07659259,-1.47738251){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}T\end{tabular}}}}%
+    \put(0.07058526,-1.22206149){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}air_temp\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{leaf-env_svg-tex.pdf}}%
+    \put(0.26895573,1.38130526){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}radiation_total\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{leaf-env_svg-tex.pdf}}%
+    \put(0.45627501,1.16930696){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}+\end{tabular}}}}%
+    \put(0.38525322,1.29448237){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}+1\end{tabular}}}}%
+    \put(0.38525322,1.07909602){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}+1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{leaf-env_svg-tex.pdf}}%
+    \put(3.13422904,2.14961706){\color[rgb]{0,0,0.49803922}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}led_power_draw\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{leaf-env_svg-tex.pdf}}%
+    \put(3.21938676,-0.8427285){\color[rgb]{0,0,0.49803922}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}air_speed\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{leaf-env_svg-tex.pdf}}%
+    \put(3.17513485,0.80624511){\color[rgb]{0.74901961,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}interior\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{leaf-env_svg-tex.pdf}}%
+    \put(1.85489584,-0.17471401){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}harvest_trigger\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{leaf-env_svg-tex.pdf}}%
+    \put(1.97672515,-0.5496524){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3628800 s\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{leaf-env_svg-tex.pdf}}%
+    \put(0.86346396,-1.14067775){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}k=1/(window_width*0.…\end{tabular}}}}%
+    \put(0.88183387,-0.78815289){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}farm_footprint\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{leaf-env_svg-tex.pdf}}%
+    \put(0.05767856,-1.01862336){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}senVolFlo\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{leaf-env_svg-tex.pdf}}%
+    \put(0.24270834,-0.65439808){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}V_flow\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=27]{leaf-env_svg-tex.pdf}}%
+    \put(-2.42052982,0.61731812){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}weaBus\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=28]{leaf-env_svg-tex.pdf}}%
+    \put(-2.42052982,0.61731812){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}weaBus\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=29]{leaf-env_svg-tex.pdf}}%
+    \put(-2.42052982,0.61731812){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}weaBus\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=30]{leaf-env_svg-tex.pdf}}%
+    \put(-2.42052982,0.61731812){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}weaBus\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=31]{leaf-env_svg-tex.pdf}}%
+    \put(-2.42052982,0.61731812){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}weaBus\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=32]{leaf-env_svg-tex.pdf}}%
+    \put(-2.42052982,0.61731812){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}weaBus\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=33]{leaf-env_svg-tex.pdf}}%
+    \put(3.13422904,2.14961706){\color[rgb]{0,0,0.49803922}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}led_power_draw\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=34]{leaf-env_svg-tex.pdf}}%
+    \put(3.17513485,0.80624511){\color[rgb]{0.74901961,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}interior\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=35]{leaf-env_svg-tex.pdf}}%
+    \put(3.21938676,-0.8427285){\color[rgb]{0,0,0.49803922}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}air_speed\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=36]{leaf-env_svg-tex.pdf}}%
+  \end{picture}%
+\endgroup%

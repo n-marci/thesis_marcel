@@ -41,6 +41,13 @@ numbers=noenddot        % no dot after chapter heading prefixes
 \usepackage{realboxes}
 \usepackage[hidelinks]{hyperref}
 \usepackage{listings}
+\input{cfgfiles/listings-modelica.cfg}
+% \lstset{language = modelica,
+%         basicstyle=\fontsize{9pt}{10.5pt}\ttfamily,
+%         backgroundcolor=\color{Blue},
+% 		% basicstyle=\footnotesize,
+% 	    numbers=left,
+% 	    stepnumber=1}
 \usepackage{adjustbox}
 %\usetikzlibrary{datavisualization}
 \usepackage{geometry}
@@ -62,6 +69,7 @@ numbers=noenddot        % no dot after chapter heading prefixes
 	per-mode = fraction
 }
 \DeclareSIUnit{\none}{-}
+\DeclareSIUnit \ppm {ppm}
 \usepackage{svg}
 %---------------------
 

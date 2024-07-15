@@ -165,13 +165,14 @@ In countries like Germany, where fossil fuels still comprise a significant part 
 % Mitigating the flaw of excessive energy demand will be the main focus of this work.
 % By this the natural illumination of the sun is put to use and energy demand for artificial lighting is cut significantly.
 % From this starting point we 
-The goal of this work is to drastically reduce the energy requirements of Vertical Farming while maintaining a semi-controlled environment for the crops to grow in.
-Especially optimal lighting conditions for the plants shall be maintained since illumination accounts for the highest power draw.
-This is shown later.
+The main objective of this work is to drastically reduce the energy requirements of Vertical Farming while maintaining a semi-controlled environment for the crops to grow in.
+Especially optimal lighting conditions for the plants shall be maintained for reasons which are discussed in Section \ref{sec:system-analysis}.
+% since illumination accounts for the highest power draw.
+% This is shown later.
 
-To accomplish this goal, first chapter \ref{chap:fundamentals} introduces some basic concepts and terminology employed in this work.
+To accomplish this goal, first the \nameref{chap:fundamentals} introduce some basic concepts and terminology employed in this work.
 We will then look at existing commercial and academic vertical farming systems and analyze strengths and deficiencies.
-As reasoned later in chapter \ref{chap:analysis-and-arch}, the main issue holding back adoption are high energy usage requirements.
+As reasoned later in the \nameref{chap:analysis-and-arch}, the main issue holding back adoption are high energy usage requirements.
 % The conclusions of this inquiry are 
 This is the basis of the novel concept presented.
 To minimize energy consumption, natural light shall be used.
@@ -181,18 +182,22 @@ This choice directly results in an obvious synergy.
 Using the vertical farming infrastructure as an outer layer to insulate existing buildings or new architectural projects.
 To the best of the authors' knowledge, a system like this has not been suggested so far.
 Integrating vertical farming with building climate control has been proposed before \textcolor{Blue}{needs ref}.
-However, the paper suggests using the basement for farming.
+However, this paper suggests using the basement for farming.
 A space which is currently already in use for most buildings.
 % Requirements to judge feasibility of the concept are stipulated in section \ref{sec:feasibility}.
-Coming back to this work, section \ref{sec:feasibility} stipulates requirements to judge feasibility of the present retrofit concept.
-Also, metrics to evaluate these requirements are discussed.
-In section \ref{sec:architecture} the general architecture of the system is constructed and visualized with SysML diagrams.
+Coming back to this work, in section \ref{sub:stru-arch} the general architecture of the system is constructed and visualized with SysML diagrams.
+The concept of the plant panel is introduced.
+This presents an idea on which much of the concept hinges.
 The vision of the architecture is shown via Blender models representing a tangible implementation at Friedrich-Alexander-University.
+A more concrete power system is developed in section \ref{sub:power-arch} and components are picked to actualize the aforementioned realization.
+This will later guide the models developed for the simulation.
+Section \ref{sec:feasibility} stipulates requirements to judge feasibility of the present retrofit concept.
+Also, metrics to evaluate these requirements are discussed.
 % In these the 'Elektrotechnikturm', location of the Chair of Electrical Smart City is transformed.
 Chapter \ref{chap:simulation} then implements this example unit in a Modelica simulation.
 Originating from the feasibility requirements and plant needs, the general simulation architecture is built up.
-We chose lettuce as the crop plant.
-Mathematical models describing water use and yield output are implemented and combined as a Modelica model.
+% We chose lettuce as the crop plant.
+Mathematical models describing water use and yield output for the crop are implemented and combined as a Modelica model.
 Building on the work of the Modelica Buildings Library, an investigation into the thermal and energy balances is set up.
 A simulation of the physical environment is constructed and interactions with the engineered system are taken into account.
 % Interactions with the control system are laid out
